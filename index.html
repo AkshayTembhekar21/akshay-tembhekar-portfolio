@@ -1,0 +1,336 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akshay Tembhekar - Software Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .fade-in { animation: fadeIn 1s ease-in; }
+        .hover-scale:hover { transform: scale(1.05); transition: transform 0.3s ease; }
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        .fintech-bg {
+            background: linear-gradient(to right, #2d3748, #4a5568);
+            position: relative;
+            overflow: hidden;
+        }
+        .fintech-bg::before {
+            content: '💹 $SPY +1.2% | BTC/USD $92,345.67 | ETH/USD $4,123.45 | AAPL +0.8% | TSLA -1.5%';
+            white-space: nowrap;
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.9rem;
+            padding: 0.5rem;
+            animation: ticker 20s linear infinite;
+        }
+        @keyframes pillPulse {
+            0% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.7; }
+        }
+        .pharma-bg {
+            background: linear-gradient(to right, #2d3748, #68d391);
+            position: relative;
+            overflow: hidden;
+        }
+        .pharma-bg::before {
+            content: '💊';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.2);
+            animation: pillPulse 2s ease-in-out infinite;
+        }
+        @keyframes projectGlow {
+            0% { box-shadow: 0 0 5px rgba(110, 231, 183, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(110, 231, 183, 0.8); }
+            100% { box-shadow: 0 0 5px rgba(110, 231, 183, 0.5); }
+        }
+        .project-card:hover {
+            animation: projectGlow 1.5s ease-in-out infinite;
+        }
+        .download-button:hover {
+            background-color: #4ade80;
+            transition: background-color 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200 font-sans">
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState } = React;
+
+        const NavBar = () => (
+            <nav class="bg-gray-800 text-gray-200 p-4 sticky top-0 z-10">
+                <div class="container mx-auto flex justify-between items-center">
+                    <h1 class="text-2xl font-bold">Akshay Tembhekar</h1>
+                    <div class="space-x-4">
+                        <a href="#about" class="hover:text-green-300">About</a>
+                        <a href="#experience" class="hover:text-green-300">Experience</a>
+                        <a href="#projects" class="hover:text-green-300">Projects</a>
+                        <a href="#skills" class="hover:text-green-300">Skills</a>
+                        <a href="#education" class="hover:text-green-300">Education</a>
+                        <a href="#ai-passion" class="hover:text-green-300">AI Passion</a>
+                    </div>
+                </div>
+            </nav>
+        );
+
+        const Section = ({ id, title, children }) => (
+            <section id={id} class="py-12 container mx-auto px-4 fade-in">
+                <h2 class="text-3xl font-bold mb-6 text-center text-green-300">{title}</h2>
+                {children}
+            </section>
+        );
+
+        const ProjectCard = ({ title, description, tools, github }) => (
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover-scale project-card mb-4">
+                <h3 class="text-xl font-semibold text-green-300">{title}</h3>
+                <p class="text-gray-400 mt-2">{description}</p>
+                <p class="text-gray-500 mt-2"><strong>Tools:</strong> {tools}</p>
+                <a href={github} target="_blank" rel="noopener noreferrer" class="text-green-300 hover:underline mt-2 inline-block">
+                    <i class="fab fa-github mr-2"></i>View on GitHub
+                </a>
+            </div>
+        );
+
+        const ExperienceCard = ({ title, company, location, dates, children, isFintech, isPharma }) => (
+            <div class={`p-6 rounded-lg shadow-lg mb-4 ${isFintech ? 'fintech-bg' : isPharma ? 'pharma-bg' : 'bg-gray-800'} ${isFintech || isPharma ? 'text-white' : 'text-gray-400'}`}>
+                <h3 class="text-xl font-semibold">{title}</h3>
+                <p class={isFintech || isPharma ? 'text-gray-200' : 'text-gray-400'}>{company}, {location} <span class="float-right">{dates}</span></p>
+                {children}
+            </div>
+        );
+
+        const App = () => (
+            <div>
+                <NavBar />
+                <header class="bg-gray-800 text-gray-200 text-center py-16">
+                    <h1 class="text-4xl md:text-5xl font-bold fade-in">Akshay Tembhekar</h1>
+                    <p class="text-xl mt-2">Backend Engineer | Java Expert | AI Enthusiast</p>
+                    <div class="mt-4 space-x-4">
+                        <a href="mailto:akshay.tembhekar@example.com" class="text-green-300 hover:underline">
+                            <i class="fas fa-envelope mr-2"></i>Email
+                        </a>
+                        <a href="tel:+918600768909" class="text-green-300 hover:underline">
+                            <i class="fas fa-phone mr-2"></i>+91 8600768909
+                        </a>
+                        <a href="https://linkedin.com/in/akshay-tembhekar-060ba11" target="_blank" rel="noopener noreferrer" class="text-green-300 hover:underline">
+                            <i class="fab fa-linkedin mr-2"></i>LinkedIn
+                        </a>
+                        <a href="https://github.com/AkshayTembhekar21" target="_blank" rel="noopener noreferrer" class="text-green-300 hover:underline">
+                            <i class="fab fa-github mr-2"></i>GitHub
+                        </a>
+                        <a href="/assets/Akshay_Tembhekar_Resume.pdf" download class="text-green-300 hover:text-white download-button bg-green-600 px-4 py-2 rounded-lg">
+                            <i class="fas fa-file-download mr-2"></i>Download Resume
+                        </a>
+                    </div>
+                </header>
+
+                <Section id="about" title="About Me">
+                    <p class="text-lg text-gray-400">
+                        Experienced Backend Engineer with 7 years in fintech and enterprise domains. Skilled in developing scalable backend services, transitioning to microservices, and maintaining high-performance systems. Proficient in Java, Spring Boot, and event-driven architectures with a strong focus on TDD and system reliability. Passionate about AI, demonstrated through projects like RAGAI and HR Recruiter, with a focus on technologies to solve real-world problems.
+                    </p>
+                </Section>
+
+                <Section id="experience" title="Professional Experience">
+                    <ExperienceCard
+                        title="Software Developer (Fintech Domain)"
+                        company="Trading Technologies"
+                        location="Pune"
+                        dates="03/2023 - Present"
+                        isFintech={true}
+                        isPharma={false}
+                    >
+                        <ul class="list-disc ml-5 text-gray-200">
+                            <li>Embarked on an exhilarating journey with <strong>Trading Technologies</strong>, mastering the <strong>TT Fixed Income Trading Platform</strong> to revolutionize global markets with <strong>lightning-fast trade execution</strong> across <strong>U.S. Treasuries</strong>, <strong>credit</strong>, <strong>emerging markets</strong>, and <strong>interest rate swaps</strong>.</li>
+                            <li>Enabled <strong>real-time market data updates</strong> by leveraging <strong>WebSockets</strong> for seamless <strong>server-market interface</strong> using <strong>event-driven communication</strong> via <strong>Publisher-Subscriber pattern</strong>.</li>
+                            <li>Transitioned essential services to a <strong>microservice-based architecture</strong>, improving <strong>scalability</strong>, <strong>maintainability</strong>, and <strong>responsiveness</strong>.</li>
+                            <li>Achieved <strong>50% performance improvement</strong> through <strong>database tuning</strong> and <strong>code refactoring</strong>.</li>
+                            <li>Collaborated with <strong>cross-functional teams</strong> to enhance <strong>real-time market data integration</strong> and boost <strong>trade efficiency</strong> in a fast-paced <strong>trading environment</strong>.</li>
+                            <li>Managed a team of developers to deliver product features such as <strong>MOC</strong> and <strong>Switch RFM</strong>.</li>
+                            <li>Integrated <strong>BLPAPI (Bloomberg BPIPE)</strong> into our platform with <strong>fault tolerance</strong>, ensuring automatic failover to the next server if a connection fails.</li>
+                            <li><strong>Tools:</strong> Java, Spring Boot, Hibernate, WebSockets, TDD, Agile, Kafka, JavaFX, JProfiler, SQL, JUnit, Maven, Git, Log4j2.</li>
+                        </ul>
+                    </ExperienceCard>
+                    <ExperienceCard
+                        title="Senior Software Engineer"
+                        company="Bee Logical Solutions"
+                        location="Pune"
+                        dates="01/2022 - 10/2023"
+                        isFintech={false}
+                        isPharma={false}
+                    >
+                        <ul class="list-disc ml-5 text-gray-400">
+                            <li>Delivered <strong>end-to-end web solutions</strong> using <strong>Handlebars.js</strong> and <strong>Backbone.js</strong>.</li>
+                            <li>Developed <strong>backend modules</strong> for <strong>On-Demand Video Training</strong>, <strong>Membership</strong>, and <strong>Event management</strong>.</li>
+                            <li>Integrated <strong>Vimeo API</strong> into the <strong>Learning Management System (LMS) module</strong>.</li>
+                            <li>Followed the <strong>Waterfall development model</strong> for <strong>project execution</strong>.</li>
+                            <li><strong>Tools:</strong> Handlebars.js, Backbone.js, LMS module, Waterfall development.</li>
+                        </ul>
+                    </ExperienceCard>
+                    <ExperienceCard
+                        title="Software Developer (Pharmaceutical Domain)"
+                        company="Excellerate Technology"
+                        location="Pune"
+                        dates="04/2020 - 01/2022"
+                        isFintech={false}
+                        isPharma={true}
+                    >
+                        <ul class="list-disc ml-5 text-gray-200">
+                            <li>Worked as a <strong>back-end developer</strong>, delivering <strong>robust solutions</strong> for <strong>client user stories</strong> in the <strong>pharmaceutical domain</strong>.</li>
+                            <li>Developed key application phases such as <strong>Data Entry</strong>, <strong>Validation</strong>, and <strong>Filling</strong> using <strong>Java Swing</strong> and <strong>Angular</strong>.</li>
+                            <li>Provided <strong>technical expertise</strong> to <strong>business stakeholders</strong>, ensuring <strong>alignment with project goals</strong> and delivering <strong>impactful solutions</strong>.</li>
+                            <li>Developed <strong>backend solutions</strong> for <strong>pharmaceutical client requirements</strong>, including a <strong>data validation system</strong> for <strong>drug inventory management</strong>.</li>
+                            <li>Conducted <strong>unit testing</strong> using <strong>JUnit</strong>, ensuring <strong>comprehensive test coverage</strong> and <strong>reliable code</strong>.</li>
+                            <li>Adhered to <strong>Agile methodologies</strong>, collaborating with <strong>cross-functional teams</strong> to meet <strong>evolving project requirements</strong>.</li>
+                            <li><strong>Tools:</strong> Java, Swing, Angular, JUnit, SQL, Git, JavaFX, JProfiler, TDD, Agile, Spring Boot, Hibernate, REST.</li>
+                        </ul>
+                    </ExperienceCard>
+                    <ExperienceCard
+                        title="Associate Software Developer (Fintech Domain)"
+                        company="NASDAQ"
+                        location="Mumbai"
+                        dates="12/2017 - 03/2020"
+                        isFintech={true}
+                        isPharma={false}
+                    >
+                        <ul class="list-disc ml-5 text-gray-200">
+                            <li>Dived into the <strong>dynamic world</strong> of NASDAQ’s <strong>Calypso platform</strong>, crafting <strong>end-to-end solutions</strong> for <strong>trade life-cycle phases</strong> like <strong>trade capture</strong> and <strong>pricing</strong> for <strong>equity</strong> and <strong>commodity products</strong> in the <strong>front office</strong>.</li>
+                            <li>Engineered <strong>innovative extractors</strong> that powered <strong>trade capture</strong> and <strong>pricing features</strong>, boosting <strong>backend availability</strong> and <strong>maintainability</strong> with a touch of <strong>fintech flair</strong>.</li>
+                            <li>Thrived in <strong>high-energy daily meetings</strong> with <strong>stakeholders</strong>, resolving <strong>conflicts</strong> and shaping <strong>project requirements</strong> with precision.</li>
+                            <li>Mastered <strong>comprehensive documentation</strong> alongside <strong>development</strong>, ensuring every detail shone in this <strong>fast-paced environment</strong>.</li>
+                            <li><strong>Tools:</strong> Java, Spring Boot, Hibernate, SQL, Maven, Git, JIRA, Confluence, Log4j, Agile Methodology.</li>
+                        </ul>
+                    </ExperienceCard>
+                </Section>
+
+                <Section id="projects" title="Projects">
+                    <ProjectCard
+                        title="CanvasSync: OAuth-Integrated LMS Data Synchronization Tool"
+                        description="Developed a secure integration system to connect a local Java-based platform with Instructor's Canvas LMS using OAuth 2.0 authentication. Fetched and synchronized course and user information via Canvas public REST APIs, storing data in a MySQL database."
+                        tools="Java 11, Spring Boot, Maven, MySQL, OAuth 2.0, Canvas API, HTML/CSS"
+                        github="https://github.com/AkshayTembhekar21/CanvasSync"
+                    />
+                    <ProjectCard
+                        title="MarketPulse: Real-Time Crypto Data Pipeline with Spring Boot & Kafka"
+                        description="Developed a real-time cryptocurrency market data pipeline using Spring Boot and Apache Kafka, integrated with external WebSocket APIs to ingest live market trade data. Implemented data processing and persistence using JPA (Hibernate)."
+                        tools="Spring Boot, Java, Kafka, JPA (Hibernate), WebSocket, JUnit, CI/CD"
+                        github="https://github.com/AkshayTembhekar21/MarketPulse"
+                    />
+                    <ProjectCard
+                        title="RAGAI: Confluence-Powered Internal QA Assistant"
+                        description="Built a production-ready Retrieval-Augmented Generation (RAG) system for querying internal knowledge bases using natural language. Integrated with Atlassian Confluence for semantic search and OpenAI GPT models for context-aware answers."
+                        tools="Python, OpenAI API, Pinecone, Atlassian Confluence API, LangChain"
+                        github="https://github.com/AkshayTembhekar21/RAGAI"
+                    />
+                    <ProjectCard
+                        title="HR Recruiter: AI-Powered Resume Screening Tool"
+                        description="Developed an AI-powered tool to streamline resume screening by extracting and analyzing candidate data from PDF resumes using Python and NLP techniques. Built a Streamlit interface for HR professionals to view ranked candidate profiles."
+                        tools="Python, PyPDF2, OpenAI API, Streamlit, NLP"
+                        github="https://github.com/AkshayTembhekar21/hr-recruiter"
+                    />
+                </Section>
+
+                <Section id="skills" title="Skills">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div><strong>Languages:</strong> Java (Expert), Maven (Intermediate), Python (Intermediate), JIRA (Intermediate), SQL (Expert), JProfiler (Intermediate), JavaScript (Beginner)</div>
+                        <div><strong>Architectures:</strong> Event-driven (Expert), Microservices (Expert), Distributed Systems (Intermediate)</div>
+                        <div><strong>Frameworks:</strong> JPA/Hibernate (Expert), JUnit (Expert), REST (Expert), Spring Boot (Expert), TDD (Expert), Angular (Intermediate), NetSuite (Beginner)</div>
+                        <div><strong>Container and Clouds:</strong> Kubernetes (Intermediate), AWS (Intermediate), Docker (Intermediate)</div>
+                        <div><strong>DevOps and Tools:</strong> CI/CD (Intermediate), Git (Expert), IntelliJ (Expert)</div>
+                        <div><strong>Software:</strong> Calypso (Intermediate)</div>
+                        <div><strong>AI Tools:</strong> Cursor AI (Beginner), Windsurf (Beginner)</div>
+                    </div>
+                </Section>
+
+                <Section id="education" title="Education">
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg mb-4">
+                        <h3 class="text-xl font-semibold text-green-300">Computer Science - Master's Degree (MSc)</h3>
+                        <p class="text-gray-400">University of Pune, Pune <span class="float-right">06/2016 - 06/2018</span></p>
+                        <ul class="list-disc ml-5 text-gray-400">
+                            <li>Graduated with a <strong>CGPA of 9.2</strong>, ranking <strong>top of the class</strong> in multiple semesters.</li>
+                            <li>Recognized as the <strong>topper</strong> and <strong>awarded</strong> during the program.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-semibold text-green-300">Computer Science - Bachelor's Degree (BSc)</h3>
+                        <p class="text-gray-400">University of Pune, Pune <span class="float-right">06/2013 - 06/2016</span></p>
+                        <ul class="list-disc ml-5 text-gray-400">
+                            <li>Graduated with <strong>First Class</strong>.</li>
+                            <li>Secured <strong>1st position</strong> in a <strong>project competition</strong> in 2015 and 2016.</li>
+                            <li>Won <strong>2nd position</strong> in a <strong>project competition</strong> held by Modern College of Science.</li>
+                        </ul>
+                    </div>
+                </Section>
+
+                <Section id="ai-passion" title="Passion for AI Learning">
+                    <p class="text-lg text-gray-400">
+                        Passionate about AI, demonstrated through hands-on projects. Explore my AI work:
+                        <ul class="list-disc ml-5 mt-2">
+                            <li><a href="https://github.com/AkshayTembhekar21/RAGAI" target="_blank" rel="noopener noreferrer" class="text-green-300 hover:underline">RAGAI</a></li>
+                            <li><a href="https://github.com/AkshayTembhekar21/hr-recruiter" target="_blank" rel="noopener noreferrer" class="text-green-300 hover:underline">HR Recruiter</a></li>
+                        </ul>
+                    </p>
+                </Section>
+
+                <footer class="bg-gray-800 text-gray-200 text-center py-6">
+                    <p>© 2025 Akshay Tembhekar. All rights reserved.</p>
+                </footer>
+            </div>
+        );
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
