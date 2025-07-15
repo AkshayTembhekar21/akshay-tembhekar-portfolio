@@ -186,6 +186,15 @@
             border: 2px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
             left: calc(50% - 6px);
+            z-index: 10;
+        }
+
+        .timeline-item:nth-of-type(odd) .timeline-dot {
+            right: -6px;
+        }
+
+        .timeline-item:nth-of-type(even) .timeline-dot {
+            left: -6px;
         }
 
         /* Skill Icons */
@@ -351,8 +360,9 @@
                     <div class="glass-card p-6 rounded-xl">
                         <h3 class="text-xl font-semibold text-green-300 mb-2">{title}</h3>
                         <p class="text-gray-300 mb-3">{company}, {location} <span class="float-right text-gray-400">{dates}</span></p>
-                {children}
+                        {children}
                     </div>
+                    <div class="timeline-dot"></div>
                 </div>
             );
         };
@@ -466,7 +476,6 @@
                                     <li><strong>Tools & Technologies:</strong> Java, Spring Boot, Hibernate, Microservices/Distributed Systems, WebSockets, TDD, Event-Driven Architecture, JProfiler, JavaFX.</li>
                                 </ul>
                             </TimelineItem>
-                            <div class="timeline-dot"></div>
                             
                             <TimelineItem
                                 title="Senior Software Engineer"
@@ -482,7 +491,6 @@
                                     <li><strong>Tools:</strong> Handlebars.js, Backbone.js, LMS module, Waterfall development.</li>
                                 </ul>
                             </TimelineItem>
-                            <div class="timeline-dot"></div>
                             
                             <TimelineItem
                                 title="Software Developer (Pharmaceutical Domain)"
@@ -499,7 +507,6 @@
                                     <li><strong>Tools & Technologies:</strong> Java, Swing, Angular, JUnit, SQL, Git, TDD, Agile, SpringBoot, Hibernate, REST.</li>
                                 </ul>
                             </TimelineItem>
-                            <div class="timeline-dot"></div>
                             
                             <TimelineItem
                                 title="Associate Software Developer (Fintech Domain)"
@@ -516,7 +523,6 @@
                                     <li><strong>Tools & Technologies:</strong> Java, Spring Boot, Hibernate, SQL, Git, Eclipse, Confluence, Log4j, Agile Methodology.</li>
                                 </ul>
                             </TimelineItem>
-                            <div class="timeline-dot"></div>
                         </div>
                 </Section>
 
