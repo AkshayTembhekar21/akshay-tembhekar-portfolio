@@ -185,16 +185,19 @@
             border-radius: 50%;
             border: 2px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
-            left: calc(50% - 6px);
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 10;
         }
 
         .timeline-item:nth-of-type(odd) .timeline-dot {
             right: -6px;
+            left: auto;
         }
 
         .timeline-item:nth-of-type(even) .timeline-dot {
             left: -6px;
+            right: auto;
         }
 
         /* Skill Icons */
@@ -583,7 +586,7 @@
                                     name="Docker" 
                                 />
                                 <SkillIcon 
-                                    logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" 
+                                    logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" 
                                     name="AWS" 
                                 />
                                 <SkillIcon 
