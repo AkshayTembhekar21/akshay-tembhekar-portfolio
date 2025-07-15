@@ -171,11 +171,10 @@
             text-align: left;
         }
 
-        .timeline-item::before {
-            content: '';
+        .company-label {
             position: absolute;
             top: 20px;
-            width: 80px;
+            width: 120px;
             height: 40px;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 8px;
@@ -188,14 +187,15 @@
             color: #22c55e;
             text-align: center;
             line-height: 1.2;
+            white-space: pre-line;
         }
 
-        .timeline-item:nth-child(odd)::before {
-            right: -100px;
+        .timeline-item:nth-child(odd) .company-label {
+            right: -140px;
         }
 
-        .timeline-item:nth-child(even)::before {
-            left: -100px;
+        .timeline-item:nth-child(even) .company-label {
+            left: -140px;
         }
 
         /* Skill Icons */
@@ -248,9 +248,10 @@
             padding: 20px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-start;
             transition: all 0.3s ease;
             transform-style: preserve-3d;
+            position: relative;
         }
 
         .project-tile:hover {
@@ -277,10 +278,10 @@
                 padding-left: 50px;
             }
 
-            .timeline-item::before {
+            .company-label {
                 left: 10px !important;
                 right: auto !important;
-                width: 60px;
+                width: 80px;
                 height: 30px;
                 font-size: 8px;
             }
@@ -343,22 +344,19 @@
 
         const ProjectTile = ({ title, description, tools, github }) => (
             <div class="project-tile">
-                <div>
+                <div class="flex-1">
                     <h3 class="text-xl font-semibold text-green-300 mb-3">{title}</h3>
                     <p class="text-gray-300 mb-4 text-sm">{description}</p>
                     <p class="text-gray-400 text-xs"><strong>Tools:</strong> {tools}</p>
                 </div>
                 <a href={github} target="_blank" rel="noopener noreferrer" 
-                   class="inline-flex items-center text-green-300 hover:text-white transition-colors text-sm">
+                   class="inline-flex items-center text-green-300 hover:text-white transition-colors text-sm mt-auto">
                     <i class="fab fa-github mr-2"></i>View on GitHub
                 </a>
             </div>
         );
 
         const TimelineItem = ({ title, company, location, dates, children, isFintech }) => {
-            const companyWords = company.split(' ');
-            const displayName = companyWords.length > 1 ? companyWords.join('\n') : company;
-            
             return (
                 <div class={`timeline-item ${isFintech ? 'glow-border' : ''}`}>
                     <div class="glass-card p-6 rounded-xl">
@@ -366,7 +364,7 @@
                         <p class="text-gray-300 mb-3">{company}, {location} <span class="float-right text-gray-400">{dates}</span></p>
                         {children}
                     </div>
-                    <div class="timeline-item" data-company={displayName}></div>
+                    <div class="company-label">{company}</div>
                 </div>
             );
         };
@@ -386,24 +384,7 @@
                 return () => clearInterval(timer);
             }, []);
 
-            // Add company names to timeline items
-            useEffect(() => {
-                const timelineItems = document.querySelectorAll('.timeline-item');
-                timelineItems.forEach((item, index) => {
-                    const companyNames = [
-                        'Trading\nTechnologies',
-                        'Bee Logical\nSolutions',
-                        'Excellerate\nTechnology',
-                        'NASDAQ'
-                    ];
-                    if (companyNames[index]) {
-                        const beforeElement = item.querySelector('::before');
-                        if (beforeElement) {
-                            beforeElement.textContent = companyNames[index];
-                        }
-                    }
-                });
-            }, []);
+
 
             return (
                 <div class="relative z-10">
@@ -480,7 +461,7 @@
                                 title="Software Developer (Fintech Domain)"
                                 company="Trading Technologies"
                                 location="Pune"
-                                dates="03/2023 - Present"
+                                dates="10/2023 - Present"
                                 isFintech={true}
                             >
                                 <ul class="list-disc ml-5 text-gray-300 space-y-2 text-sm">
