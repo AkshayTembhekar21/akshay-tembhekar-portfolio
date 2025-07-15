@@ -161,18 +161,18 @@
             width: 45%;
         }
 
-        .timeline-item:nth-child(odd) {
+        .timeline-item:nth-of-type(odd) {
             left: 0;
             text-align: right;
         }
 
-        .timeline-item:nth-child(even) {
+        .timeline-item:nth-of-type(even) {
             left: 55%;
             text-align: left;
         }
 
         /* Fix bullet point alignment for odd timeline items */
-        .timeline-item:nth-child(odd) ul {
+        .timeline-item:nth-of-type(odd) ul {
             text-align: left;
         }
 
@@ -446,62 +446,75 @@
                 <Section id="experience" title="Professional Experience">
                         <div class="timeline">
                             <TimelineItem
-                        title="Software Developer (Fintech Domain)"
-                        company="Trading Technologies"
-                        location="Pune"
+                                title="Software Developer (Fintech Domain)"
+                                company="Trading Technologies"
+                                location="Pune"
                                 dates="10/2023 - Present"
-                        isFintech={true}
+                                isFintech={true}
                             >
                                 <ul class="list-disc ml-4 text-gray-300 space-y-2 text-sm">
-                                    <li>Mastering the <strong>TT Fixed Income Trading Platform</strong> for global markets</li>
-                                    <li>Enabled <strong>real-time market data updates</strong> using <strong>WebSockets</strong></li>
-                                    <li>Transitioned to <strong>microservice-based architecture</strong></li>
-                                    <li>Achieved <strong>50% performance improvement</strong> through optimization</li>
-                                    <li>Integrated <strong>BLPAPI (Bloomberg BPIPE)</strong> with fault tolerance</li>
-                        </ul>
+                                    <li>Designed and developed critical trading workflows, including Market On Close (MOC) and Switch RFM, enabling efficient handling of order execution and pricing logic.</li>
+                                    <li>Implemented a hybrid architecture that integrates legacy monolithic systems with modern web applications using event-driven communication via Publisher-Subscriber pattern.</li>
+                                    <li>Enabled real-time market data updates by leveraging WebSockets for seamless server-market-interface communication.</li>
+                                    <li>Transitioned essential services to a microservices-based architecture to significantly improve system scalability, maintainability, and responsiveness.</li>
+                                    <li>Optimized the Pricing Sheet module for a key client, achieving 80% performance improvement through database tuning and code refactoring.</li>
+                                    <li>Followed Test-Driven Development (TDD) practices to ensure delivery of clean, testable, and production ready code aligned with business requirements.</li>
+                                    <li>Collaborated with cross-functional teams to streamline workflows, eliminate bottlenecks, and deliver high-impact solutions in a fast-paced trading environment.</li>
+                                    <li>Managed a team of 3 developers to deliver product features (Trading workflows) such as MOC and Switch RFM.</li>
+                                    <li>Utilized development and programming expertise to create scalable and robust solutions for merchant integrations, ensuring adherence to payment best practices that improved transaction success rates by 30%.</li>
+                                    <li>Developed and maintained backend services as a Java engineer, focusing on the building blocks of Application Services to enhance system reliability.</li>
+                                    <li><strong>Tools & Technologies:</strong> Java, Spring Boot, Hibernate, Microservices/Distributed Systems, WebSockets, TDD, Event-Driven Architecture, JProfiler, JavaFX.</li>
+                                </ul>
                             </TimelineItem>
                             <div class="timeline-dot"></div>
                             
                             <TimelineItem
-                        title="Senior Software Engineer"
-                        company="Bee Logical Solutions"
-                        location="Pune"
-                        dates="01/2022 - 10/2023"
+                                title="Senior Software Engineer"
+                                company="Bee Logical Solutions"
+                                location="Pune"
+                                dates="01/2022 - 10/2023"
                             >
                                 <ul class="list-disc ml-4 text-gray-300 space-y-2 text-sm">
-                                    <li>Delivered <strong>end-to-end web solutions</strong> using modern frameworks</li>
-                                    <li>Developed <strong>backend modules</strong> for LMS and event management</li>
-                                    <li>Integrated <strong>Vimeo API</strong> into learning systems</li>
-                        </ul>
+                                    <li>Worked as a web developer, delivering end-to-end solutions using Handlebars.js and Backbone.js.</li>
+                                    <li>Developed backend modules for features such as On-Demand Video Training, Membership, and Event management.</li>
+                                    <li>Integrated Vimeo API into the Learning Management System (LMS) module to enhance functionality.</li>
+                                    <li>Followed the Waterfall development model for project execution.</li>
+                                    <li><strong>Tools:</strong> Handlebars.js, Backbone.js, LMS module, Waterfall development.</li>
+                                </ul>
                             </TimelineItem>
                             <div class="timeline-dot"></div>
                             
                             <TimelineItem
-                        title="Software Developer (Pharmaceutical Domain)"
-                        company="Excellerate Technology"
-                        location="Pune"
-                        dates="04/2020 - 01/2022"
+                                title="Software Developer (Pharmaceutical Domain)"
+                                company="Excellerate Technology"
+                                location="Pune"
+                                dates="04/2020 - 01/2022"
                             >
                                 <ul class="list-disc ml-4 text-gray-300 space-y-2 text-sm">
-                                    <li>Delivered <strong>robust solutions</strong> for pharmaceutical clients</li>
-                                    <li>Developed <strong>data validation systems</strong> for drug inventory</li>
-                                    <li>Conducted comprehensive <strong>unit testing</strong> with JUnit</li>
-                        </ul>
+                                    <li>Worked as a back-end developer, delivering robust solutions for client user stories in the pharmaceutical domain.</li>
+                                    <li>Developed key application phases such as Data Entry, Validation, and Filling using Java Swing and Angular.</li>
+                                    <li>Provided technical capital expertise to business stakeholders, ensuring alignment with project goals and delivering impactful solutions.</li>
+                                    <li>Conducted unit testing using JUnit, ensuring comprehensive test coverage and reliable code.</li>
+                                    <li>Adhered to Agile methodologies, collaborating with cross-functional teams to meet evolving project requirements.</li>
+                                    <li><strong>Tools & Technologies:</strong> Java, Swing, Angular, JUnit, SQL, Git, TDD, Agile, SpringBoot, Hibernate, REST.</li>
+                                </ul>
                             </TimelineItem>
                             <div class="timeline-dot"></div>
                             
                             <TimelineItem
-                        title="Associate Software Developer (Fintech Domain)"
-                        company="NASDAQ"
-                        location="Mumbai"
-                        dates="12/2017 - 03/2020"
-                        isFintech={true}
+                                title="Associate Software Developer (Fintech Domain)"
+                                company="NASDAQ"
+                                location="Mumbai"
+                                dates="12/2017 - 03/2020"
+                                isFintech={true}
                             >
                                 <ul class="list-disc ml-4 text-gray-300 space-y-2 text-sm">
-                                    <li>Worked on NASDAQ's <strong>Calypso platform</strong> for trade lifecycle</li>
-                                    <li>Engineered <strong>innovative extractors</strong> for trade capture</li>
-                                    <li>Mastered comprehensive documentation and development</li>
-                        </ul>
+                                    <li>Implemented end-to-end solutions for trade life-cycle phases such as trade capture and pricing for multiple derivative products.</li>
+                                    <li>Followed industry-standard practices to implement trade capture and pricing features, contributing to backend scalability and maintainability.</li>
+                                    <li>Organized and proactively participated in daily meetings with stakeholders to resolve conflicts and brainstorm new requirements.</li>
+                                    <li>Followed comprehensive documentation, ensuring documentation was completed alongside development.</li>
+                                    <li><strong>Tools & Technologies:</strong> Java, Spring Boot, Hibernate, SQL, Git, Eclipse, Confluence, Log4j, Agile Methodology.</li>
+                                </ul>
                             </TimelineItem>
                             <div class="timeline-dot"></div>
                         </div>
