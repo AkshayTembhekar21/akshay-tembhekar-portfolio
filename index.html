@@ -22,11 +22,12 @@
 
         body {
             overflow-x: hidden;
+            overflow-y: auto;
         }
 
-        /* Trading Background Animation */
+        /* Clean Black Background */
         .trading-bg {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%);
+            background: #000000;
             position: relative;
             overflow: hidden;
             min-height: 100vh;
@@ -40,90 +41,39 @@
             right: 0;
             bottom: 0;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
-            animation: backgroundShift 20s ease-in-out infinite;
+                radial-gradient(circle at 20% 80%, rgba(34, 197, 94, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(168, 85, 247, 0.05) 0%, transparent 50%);
+            animation: backgroundShift 30s ease-in-out infinite;
             pointer-events: none;
             z-index: -1;
         }
 
         @keyframes backgroundShift {
             0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.1) rotate(1deg); }
-        }
-
-        /* Animated Trading Charts */
-        .chart-line {
-            position: fixed;
-            height: 2px;
-            background: linear-gradient(90deg, #22c55e, #3b82f6, #a855f7);
-            animation: chartMove 8s linear infinite;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .chart-line:nth-child(1) { top: 15%; width: 60%; animation-delay: 0s; }
-        .chart-line:nth-child(2) { top: 35%; width: 40%; animation-delay: 2s; }
-        .chart-line:nth-child(3) { top: 55%; width: 80%; animation-delay: 4s; }
-        .chart-line:nth-child(4) { top: 75%; width: 30%; animation-delay: 6s; }
-
-        @keyframes chartMove {
-            0% { transform: translateX(-100%); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateX(100vw); opacity: 0; }
+            50% { transform: scale(1.05) rotate(0.5deg); }
         }
 
         /* Glassmorphism Cards */
         .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
         }
 
         .glass-card:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(34, 197, 94, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(34, 197, 94, 0.2);
             transform: translateY(-5px);
             transition: all 0.3s ease;
         }
 
-        /* Trading Ticker */
-        .trading-ticker {
-            background: linear-gradient(90deg, #1e293b, #334155);
-            border-top: 1px solid rgba(34, 197, 94, 0.3);
-            border-bottom: 1px solid rgba(34, 197, 94, 0.3);
-        }
-
-        .ticker-content {
-            animation: tickerScroll 30s linear infinite;
-            white-space: nowrap;
-        }
-
-        @keyframes tickerScroll {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-
-        .ticker-item {
-            display: inline-block;
-            margin: 0 20px;
-            padding: 8px 16px;
-            background: rgba(34, 197, 94, 0.1);
-            border-radius: 20px;
-            border: 1px solid rgba(34, 197, 94, 0.2);
-        }
-
-        .ticker-item.positive { color: #22c55e; }
-        .ticker-item.negative { color: #ef4444; }
-
         /* Floating Elements */
         .floating-element {
             position: fixed;
-            opacity: 0.1;
-            animation: float 6s ease-in-out infinite;
+            opacity: 0.03;
+            animation: float 8s ease-in-out infinite;
             pointer-events: none;
             z-index: -1;
         }
@@ -135,16 +85,16 @@
 
         @keyframes float {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
+            50% { transform: translateY(-15px) rotate(90deg); }
         }
 
         /* Glow Effects */
         .glow-text {
-            text-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+            text-shadow: 0 0 15px rgba(34, 197, 94, 0.3);
         }
 
         .glow-border {
-            box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.2);
         }
 
         /* Smooth Animations */
@@ -188,50 +138,134 @@
             width: 100%;
         }
 
-        /* Skill Bars */
-        .skill-bar {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
+        /* Timeline */
+        .timeline {
             position: relative;
+            padding: 20px 0;
         }
 
-        .skill-fill {
-            background: linear-gradient(90deg, #22c55e, #3b82f6);
-            height: 100%;
-            border-radius: 10px;
-            transition: width 1s ease;
-        }
-
-        /* Project Cards */
-        .project-card {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-card::before {
+        .timeline::before {
             content: '';
             position: absolute;
+            left: 50%;
             top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.1), transparent);
-            transition: left 0.5s ease;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #22c55e, #3b82f6, #a855f7);
+            transform: translateX(-50%);
         }
 
-        .project-card:hover::before {
-            left: 100%;
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            width: 45%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 55%;
+            text-align: left;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: #22c55e;
+            border-radius: 50%;
+            border: 4px solid #000000;
+        }
+
+        .timeline-item:nth-child(odd)::before {
+            right: -60px;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: -60px;
+        }
+
+        /* Skill Icons */
+        .skill-icon {
+            display: inline-block;
+            margin: 10px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            transition: all 0.3s ease;
+            animation: skillFloat 4s ease-in-out infinite;
+        }
+
+        .skill-icon:nth-child(1) { animation-delay: 0s; }
+        .skill-icon:nth-child(2) { animation-delay: 0.5s; }
+        .skill-icon:nth-child(3) { animation-delay: 1s; }
+        .skill-icon:nth-child(4) { animation-delay: 1.5s; }
+        .skill-icon:nth-child(5) { animation-delay: 2s; }
+        .skill-icon:nth-child(6) { animation-delay: 2.5s; }
+        .skill-icon:nth-child(7) { animation-delay: 3s; }
+        .skill-icon:nth-child(8) { animation-delay: 3.5s; }
+
+        @keyframes skillFloat {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-8px) scale(1.03); }
+        }
+
+        .skill-icon:hover {
+            transform: translateY(-12px) scale(1.08);
+            background: rgba(34, 197, 94, 0.05);
+            border-color: rgba(34, 197, 94, 0.2);
+            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.15);
+        }
+
+        /* Project Tiles */
+        .project-tile {
+            aspect-ratio: 1;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+
+        .project-tile:hover {
+            transform: perspective(1000px) rotateX(8deg) rotateY(8deg);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(34, 197, 94, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .chart-line {
-                display: none;
-            }
-            
             .floating-element {
                 display: none;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                text-align: left !important;
+                padding-left: 50px;
+            }
+
+            .timeline-item::before {
+                left: 10px !important;
+                right: auto !important;
             }
         }
 
@@ -242,12 +276,7 @@
     </style>
 </head>
 <body class="trading-bg text-gray-200">
-    <!-- Animated Background Elements -->
-    <div class="chart-line"></div>
-    <div class="chart-line"></div>
-    <div class="chart-line"></div>
-    <div class="chart-line"></div>
-    
+    <!-- Subtle Floating Elements -->
     <div class="floating-element text-4xl">📈</div>
     <div class="floating-element text-4xl">💹</div>
     <div class="floating-element text-4xl">⚡</div>
@@ -256,30 +285,6 @@
     <div id="root"></div>
     <script type="text/babel">
         const { useState, useEffect } = React;
-
-        // Trading Ticker Data
-        const tickerData = [
-            { symbol: 'SPY', price: '485.67', change: '+1.2%', positive: true },
-            { symbol: 'BTC/USD', price: '92,345.67', change: '+2.8%', positive: true },
-            { symbol: 'ETH/USD', price: '4,123.45', change: '+1.5%', positive: true },
-            { symbol: 'AAPL', price: '198.34', change: '+0.8%', positive: true },
-            { symbol: 'TSLA', price: '245.67', change: '-1.5%', positive: false },
-            { symbol: 'NVDA', price: '789.12', change: '+3.2%', positive: true },
-            { symbol: 'MSFT', price: '456.78', change: '+0.9%', positive: true },
-            { symbol: 'GOOGL', price: '234.56', change: '-0.3%', positive: false }
-        ];
-
-        const TradingTicker = () => (
-            <div class="trading-ticker py-3 overflow-hidden">
-                <div class="ticker-content">
-                    {tickerData.map((item, index) => (
-                        <span key={index} class={`ticker-item ${item.positive ? 'positive' : 'negative'}`}>
-                            {item.symbol} ${item.price} {item.change}
-                        </span>
-                    ))}
-                </div>
-            </div>
-        );
 
         const NavBar = () => {
             const scrollToTop = () => {
@@ -319,35 +324,34 @@
             </section>
         );
 
-        const ProjectCard = ({ title, description, tools, github }) => (
-            <div class="glass-card p-6 rounded-xl project-card mb-6">
-                <h3 class="text-xl font-semibold text-green-300 mb-3">{title}</h3>
-                <p class="text-gray-300 mb-4">{description}</p>
-                <p class="text-gray-400 mb-4"><strong>Tools:</strong> {tools}</p>
+        const ProjectTile = ({ title, description, tools, github }) => (
+            <div class="project-tile">
+                <div>
+                    <h3 class="text-xl font-semibold text-green-300 mb-3">{title}</h3>
+                    <p class="text-gray-300 mb-4 text-sm">{description}</p>
+                    <p class="text-gray-400 text-xs"><strong>Tools:</strong> {tools}</p>
+                </div>
                 <a href={github} target="_blank" rel="noopener noreferrer" 
-                   class="inline-flex items-center text-green-300 hover:text-white transition-colors">
+                   class="inline-flex items-center text-green-300 hover:text-white transition-colors text-sm">
                     <i class="fab fa-github mr-2"></i>View on GitHub
                 </a>
             </div>
         );
 
-        const ExperienceCard = ({ title, company, location, dates, children, isFintech, isPharma }) => (
-            <div class={`glass-card p-6 rounded-xl mb-6 ${isFintech ? 'glow-border' : ''}`}>
-                <h3 class="text-xl font-semibold text-green-300 mb-2">{title}</h3>
-                <p class="text-gray-300 mb-3">{company}, {location} <span class="float-right text-gray-400">{dates}</span></p>
-                {children}
+        const TimelineItem = ({ title, company, location, dates, children, isFintech }) => (
+            <div class={`timeline-item ${isFintech ? 'glow-border' : ''}`}>
+                <div class="glass-card p-6 rounded-xl">
+                    <h3 class="text-xl font-semibold text-green-300 mb-2">{title}</h3>
+                    <p class="text-gray-300 mb-3">{company}, {location} <span class="float-right text-gray-400">{dates}</span></p>
+                    {children}
+                </div>
             </div>
         );
 
-        const SkillBar = ({ skill, level, color = 'green' }) => (
-            <div class="mb-4">
-                <div class="flex justify-between mb-2">
-                    <span class="font-medium">{skill}</span>
-                    <span class="text-gray-400">{level}</span>
-                </div>
-                <div class="skill-bar h-2">
-                    <div class={`skill-fill bg-${color}-500`} style={{width: level}}></div>
-                </div>
+        const SkillIcon = ({ icon, name, color = "text-green-300" }) => (
+            <div class="skill-icon">
+                <div class={`text-3xl mb-2 ${color}`}>{icon}</div>
+                <div class="text-sm font-medium">{name}</div>
             </div>
         );
 
@@ -361,28 +365,20 @@
 
             return (
                 <div class="relative z-10">
-                    <TradingTicker />
                     <NavBar />
                     
                     <header class="text-center py-20 relative">
-                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-20"></div>
+                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-10"></div>
                         <div class="relative z-10">
-                            <div class="mb-8">
-                                <h2 class="text-2xl md:text-3xl text-green-300 mb-4">Hi, I'm Akshay</h2>
-                                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                                    My journey as a software engineer is driven by curiosity and a passion for innovation. 
-                                    I believe in building solutions that make a difference, one line of code at a time.
-                                </p>
-                            </div>
-                            
                             <h1 class="text-6xl md:text-7xl font-black mb-4 glow-text">
                                 Akshay Tembhekar
                             </h1>
                             <p class="text-2xl md:text-3xl mb-6 text-gray-300">
                                 Backend Engineer | Java Expert | AI Enthusiast
                             </p>
-                            <p class="text-lg text-gray-400 mb-8">
-                                Building scalable systems and innovative solutions for the future
+                            <p class="text-lg text-gray-400 mb-8 max-w-3xl mx-auto">
+                                Crafting robust backend solutions and innovative systems that power the digital future. 
+                                From microservices to AI integration, I transform complex challenges into elegant solutions.
                             </p>
                             <div class="flex flex-wrap justify-center gap-4 mb-8">
                                 <div class="glass-card px-4 py-2 rounded-full">
@@ -437,98 +433,89 @@
                     </Section>
 
                     <Section id="experience" title="Professional Experience">
-                        <ExperienceCard
-                            title="Software Developer (Fintech Domain)"
-                            company="Trading Technologies"
-                            location="Pune"
-                            dates="03/2023 - Present"
-                            isFintech={true}
-                        >
-                            <ul class="list-disc ml-5 text-gray-300 space-y-2">
-                                <li>Embarked on an exhilarating journey with <strong>Trading Technologies</strong>, mastering the <strong>TT Fixed Income Trading Platform</strong> to revolutionize global markets with <strong>lightning-fast trade execution</strong> across <strong>U.S. Treasuries</strong>, <strong>credit</strong>, <strong>emerging markets</strong>, and <strong>interest rate swaps</strong>.</li>
-                                <li>Enabled <strong>real-time market data updates</strong> by leveraging <strong>WebSockets</strong> for seamless <strong>server-market interface</strong> using <strong>event-driven communication</strong> via <strong>Publisher-Subscriber pattern</strong>.</li>
-                                <li>Transitioned essential services to a <strong>microservice-based architecture</strong>, improving <strong>scalability</strong>, <strong>maintainability</strong>, and <strong>responsiveness</strong>.</li>
-                                <li>Achieved <strong>50% performance improvement</strong> through <strong>database tuning</strong> and <strong>code refactoring</strong>.</li>
-                                <li>Collaborated with <strong>cross-functional teams</strong> to enhance <strong>real-time market data integration</strong> and boost <strong>trade efficiency</strong> in a fast-paced <strong>trading environment</strong>.</li>
-                                <li>Managed a team of developers to deliver product features such as <strong>MOC</strong> and <strong>Switch RFM</strong>.</li>
-                                <li>Integrated <strong>BLPAPI (Bloomberg BPIPE)</strong> into our platform with <strong>fault tolerance</strong>, ensuring automatic failover to the next server if a connection fails.</li>
-                                <li><strong>Tools:</strong> Java, Spring Boot, Hibernate, WebSockets, TDD, Agile, Kafka, JavaFX, JProfiler, SQL, JUnit, Maven, Git, Log4j2.</li>
-                            </ul>
-                        </ExperienceCard>
-                        
-                        <ExperienceCard
-                            title="Senior Software Engineer"
-                            company="Bee Logical Solutions"
-                            location="Pune"
-                            dates="01/2022 - 10/2023"
-                        >
-                            <ul class="list-disc ml-5 text-gray-300 space-y-2">
-                                <li>Delivered <strong>end-to-end web solutions</strong> using <strong>Handlebars.js</strong> and <strong>Backbone.js</strong>.</li>
-                                <li>Developed <strong>backend modules</strong> for <strong>On-Demand Video Training</strong>, <strong>Membership</strong>, and <strong>Event management</strong>.</li>
-                                <li>Integrated <strong>Vimeo API</strong> into the <strong>Learning Management System (LMS) module</strong>.</li>
-                                <li>Followed the <strong>Waterfall development model</strong> for <strong>project execution</strong>.</li>
-                                <li><strong>Tools:</strong> Handlebars.js, Backbone.js, LMS module, Waterfall development.</li>
-                            </ul>
-                        </ExperienceCard>
-                        
-                        <ExperienceCard
-                            title="Software Developer (Pharmaceutical Domain)"
-                            company="Excellerate Technology"
-                            location="Pune"
-                            dates="04/2020 - 01/2022"
-                        >
-                            <ul class="list-disc ml-5 text-gray-300 space-y-2">
-                                <li>Worked as a <strong>back-end developer</strong>, delivering <strong>robust solutions</strong> for <strong>client user stories</strong> in the <strong>pharmaceutical domain</strong>.</li>
-                                <li>Developed key application phases such as <strong>Data Entry</strong>, <strong>Validation</strong>, and <strong>Filling</strong> using <strong>Java Swing</strong> and <strong>Angular</strong>.</li>
-                                <li>Provided <strong>technical expertise</strong> to <strong>business stakeholders</strong>, ensuring <strong>alignment with project goals</strong> and delivering <strong>impactful solutions</strong>.</li>
-                                <li>Developed <strong>backend solutions</strong> for <strong>pharmaceutical client requirements</strong>, including a <strong>data validation system</strong> for <strong>drug inventory management</strong>.</li>
-                                <li>Conducted <strong>unit testing</strong> using <strong>JUnit</strong>, ensuring <strong>comprehensive test coverage</strong> and <strong>reliable code</strong>.</li>
-                                <li>Adhered to <strong>Agile methodologies</strong>, collaborating with <strong>cross-functional teams</strong> to meet <strong>evolving project requirements</strong>.</li>
-                                <li><strong>Tools:</strong> Java, Swing, Angular, JUnit, SQL, Git, JavaFX, JProfiler, TDD, Agile, Spring Boot, Hibernate, REST.</li>
-                            </ul>
-                        </ExperienceCard>
-                        
-                        <ExperienceCard
-                            title="Associate Software Developer (Fintech Domain)"
-                            company="NASDAQ"
-                            location="Mumbai"
-                            dates="12/2017 - 03/2020"
-                            isFintech={true}
-                        >
-                            <ul class="list-disc ml-5 text-gray-300 space-y-2">
-                                <li>Dived into the <strong>dynamic world</strong> of NASDAQ's <strong>Calypso platform</strong>, crafting <strong>end-to-end solutions</strong> for <strong>trade life-cycle phases</strong> like <strong>trade capture</strong> and <strong>pricing</strong> for <strong>equity</strong> and <strong>commodity products</strong> in the <strong>front office</strong>.</li>
-                                <li>Engineered <strong>innovative extractors</strong> that powered <strong>trade capture</strong> and <strong>pricing features</strong>, boosting <strong>backend availability</strong> and <strong>maintainability</strong> with a touch of <strong>fintech flair</strong>.</li>
-                                <li>Thrived in <strong>high-energy daily meetings</strong> with <strong>stakeholders</strong>, resolving <strong>conflicts</strong> and shaping <strong>project requirements</strong> with precision.</li>
-                                <li>Mastered <strong>comprehensive documentation</strong> alongside <strong>development</strong>, ensuring every detail shone in this <strong>fast-paced environment</strong>.</li>
-                                <li><strong>Tools:</strong> Java, Spring Boot, Hibernate, SQL, Maven, Git, JIRA, Confluence, Log4j, Agile Methodology.</li>
-                            </ul>
-                        </ExperienceCard>
+                        <div class="timeline">
+                            <TimelineItem
+                                title="Software Developer (Fintech Domain)"
+                                company="Trading Technologies"
+                                location="Pune"
+                                dates="03/2023 - Present"
+                                isFintech={true}
+                            >
+                                <ul class="list-disc ml-5 text-gray-300 space-y-2 text-sm">
+                                    <li>Mastering the <strong>TT Fixed Income Trading Platform</strong> for global markets</li>
+                                    <li>Enabled <strong>real-time market data updates</strong> using <strong>WebSockets</strong></li>
+                                    <li>Transitioned to <strong>microservice-based architecture</strong></li>
+                                    <li>Achieved <strong>50% performance improvement</strong> through optimization</li>
+                                    <li>Integrated <strong>BLPAPI (Bloomberg BPIPE)</strong> with fault tolerance</li>
+                                </ul>
+                            </TimelineItem>
+                            
+                            <TimelineItem
+                                title="Senior Software Engineer"
+                                company="Bee Logical Solutions"
+                                location="Pune"
+                                dates="01/2022 - 10/2023"
+                            >
+                                <ul class="list-disc ml-5 text-gray-300 space-y-2 text-sm">
+                                    <li>Delivered <strong>end-to-end web solutions</strong> using modern frameworks</li>
+                                    <li>Developed <strong>backend modules</strong> for LMS and event management</li>
+                                    <li>Integrated <strong>Vimeo API</strong> into learning systems</li>
+                                </ul>
+                            </TimelineItem>
+                            
+                            <TimelineItem
+                                title="Software Developer (Pharmaceutical Domain)"
+                                company="Excellerate Technology"
+                                location="Pune"
+                                dates="04/2020 - 01/2022"
+                            >
+                                <ul class="list-disc ml-5 text-gray-300 space-y-2 text-sm">
+                                    <li>Delivered <strong>robust solutions</strong> for pharmaceutical clients</li>
+                                    <li>Developed <strong>data validation systems</strong> for drug inventory</li>
+                                    <li>Conducted comprehensive <strong>unit testing</strong> with JUnit</li>
+                                </ul>
+                            </TimelineItem>
+                            
+                            <TimelineItem
+                                title="Associate Software Developer (Fintech Domain)"
+                                company="NASDAQ"
+                                location="Mumbai"
+                                dates="12/2017 - 03/2020"
+                                isFintech={true}
+                            >
+                                <ul class="list-disc ml-5 text-gray-300 space-y-2 text-sm">
+                                    <li>Worked on NASDAQ's <strong>Calypso platform</strong> for trade lifecycle</li>
+                                    <li>Engineered <strong>innovative extractors</strong> for trade capture</li>
+                                    <li>Mastered comprehensive documentation and development</li>
+                                </ul>
+                            </TimelineItem>
+                        </div>
                     </Section>
 
                     <Section id="projects" title="Projects">
-                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                            <ProjectCard
-                                title="CanvasSync: OAuth-Integrated LMS Data Synchronization Tool"
-                                description="Developed a secure integration system to connect a local Java-based platform with Instructor's Canvas LMS using OAuth 2.0 authentication. Fetched and synchronized course and user information via Canvas public REST APIs, storing data in a MySQL database."
-                                tools="Java 11, Spring Boot, Maven, MySQL, OAuth 2.0, Canvas API, HTML/CSS"
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <ProjectTile
+                                title="CanvasSync: OAuth-Integrated LMS"
+                                description="Secure integration system connecting Java platform with Canvas LMS using OAuth 2.0 authentication."
+                                tools="Java 11, Spring Boot, MySQL, OAuth 2.0"
                                 github="https://github.com/AkshayTembhekar21/CanvasSync"
                             />
-                            <ProjectCard
-                                title="MarketPulse: Real-Time Crypto Data Pipeline with Spring Boot & Kafka"
-                                description="Developed a real-time cryptocurrency market data pipeline using Spring Boot and Apache Kafka, integrated with external WebSocket APIs to ingest live market trade data. Implemented data processing and persistence using JPA (Hibernate)."
-                                tools="Spring Boot, Java, Kafka, JPA (Hibernate), WebSocket, JUnit, CI/CD"
+                            <ProjectTile
+                                title="MarketPulse: Real-Time Crypto Pipeline"
+                                description="Real-time cryptocurrency market data pipeline using Spring Boot and Apache Kafka."
+                                tools="Spring Boot, Kafka, JPA, WebSocket"
                                 github="https://github.com/AkshayTembhekar21/MarketPulse"
                             />
-                            <ProjectCard
-                                title="RAGAI: Confluence-Powered Internal QA Assistant"
-                                description="Built a production-ready Retrieval-Augmented Generation (RAG) system for querying internal knowledge bases using natural language. Integrated with Atlassian Confluence for semantic search and OpenAI GPT models for context-aware answers."
-                                tools="Python, OpenAI API, Pinecone, Atlassian Confluence API, LangChain"
+                            <ProjectTile
+                                title="RAGAI: Confluence QA Assistant"
+                                description="Production-ready RAG system for querying internal knowledge bases using natural language."
+                                tools="Python, OpenAI API, Pinecone, LangChain"
                                 github="https://github.com/AkshayTembhekar21/RAGAI"
                             />
-                            <ProjectCard
-                                title="HR Recruiter: AI-Powered Resume Screening Tool"
-                                description="Developed an AI-powered tool to streamline resume screening by extracting and analyzing candidate data from PDF resumes using Python and NLP techniques. Built a Streamlit interface for HR professionals to view ranked candidate profiles."
-                                tools="Python, PyPDF2, OpenAI API, Streamlit, NLP"
+                            <ProjectTile
+                                title="HR Recruiter: AI Resume Screening"
+                                description="AI-powered tool to streamline resume screening using Python and NLP techniques."
+                                tools="Python, PyPDF2, OpenAI API, Streamlit"
                                 github="https://github.com/AkshayTembhekar21/hr-recruiter"
                             />
                         </div>
@@ -536,28 +523,19 @@
 
                     <Section id="skills" title="Skills">
                         <div class="glass-card p-8 rounded-xl">
-                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                <div>
-                                    <h3 class="text-lg font-semibold text-green-300 mb-4">Languages & Tools</h3>
-                                    <SkillBar skill="Java" level="95%" />
-                                    <SkillBar skill="SQL" level="90%" />
-                                    <SkillBar skill="Python" level="75%" />
-                                    <SkillBar skill="JavaScript" level="60%" />
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-blue-300 mb-4">Frameworks & Technologies</h3>
-                                    <SkillBar skill="Spring Boot" level="95%" color="blue" />
-                                    <SkillBar skill="Hibernate/JPA" level="90%" color="blue" />
-                                    <SkillBar skill="REST APIs" level="90%" color="blue" />
-                                    <SkillBar skill="WebSockets" level="85%" color="blue" />
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-purple-300 mb-4">Architecture & DevOps</h3>
-                                    <SkillBar skill="Microservices" level="90%" color="purple" />
-                                    <SkillBar skill="Event-Driven" level="85%" color="purple" />
-                                    <SkillBar skill="Docker/Kubernetes" level="70%" color="purple" />
-                                    <SkillBar skill="AWS" level="65%" color="purple" />
-                                </div>
+                            <div class="flex flex-wrap justify-center">
+                                <SkillIcon icon="☕" name="Java" color="text-red-400" />
+                                <SkillIcon icon="🐍" name="Python" color="text-yellow-400" />
+                                <SkillIcon icon="⚡" name="Spring Boot" color="text-green-400" />
+                                <SkillIcon icon="🗄️" name="SQL" color="text-blue-400" />
+                                <SkillIcon icon="🔗" name="REST APIs" color="text-purple-400" />
+                                <SkillIcon icon="🌐" name="WebSockets" color="text-cyan-400" />
+                                <SkillIcon icon="🐳" name="Docker" color="text-blue-300" />
+                                <SkillIcon icon="☁️" name="AWS" color="text-orange-400" />
+                                <SkillIcon icon="⚙️" name="Microservices" color="text-indigo-400" />
+                                <SkillIcon icon="🤖" name="AI/ML" color="text-pink-400" />
+                                <SkillIcon icon="📊" name="Kafka" color="text-red-300" />
+                                <SkillIcon icon="🧪" name="TDD" color="text-green-300" />
                             </div>
                         </div>
                     </Section>
