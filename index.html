@@ -359,6 +359,16 @@
         );
 
         const App = () => {
+            const openLinkedIn = () => {
+                const url = 'https://www.linkedin.com/in/akshay-tembhekar-akshaytembhekar';
+                // Try to open in new tab, fallback to same window if needed
+                try {
+                    window.open(url, '_blank', 'noopener,noreferrer');
+                } catch (e) {
+                    window.location.href = url;
+                }
+            };
+
             return (
                 <div class="relative z-10">
                     <NavBar />
@@ -395,8 +405,8 @@
                                    class="glass-card px-6 py-3 rounded-lg hover:bg-blue-600 transition-all">
                             <i class="fas fa-phone mr-2"></i>+91 8600768909
                         </a>
-                                <a href="https://www.linkedin.com/in/akshay-tembhekar-akshaytembhekar" target="_blank" 
-                                   class="glass-card px-6 py-3 rounded-lg hover:bg-blue-700 transition-all">
+                                <a onClick={openLinkedIn} 
+                                   class="glass-card px-6 py-3 rounded-lg hover:bg-blue-700 transition-all cursor-pointer">
                             <i class="fab fa-linkedin mr-2"></i>LinkedIn
                         </a>
                                 <a href="https://github.com/AkshayTembhekar21" target="_blank" 
