@@ -185,8 +185,7 @@
             border-radius: 50%;
             border: 2px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
-            left: 50%;
-            transform: translateX(-50%);
+            left: calc(50% - 6px);
         }
 
         /* Skill Icons */
@@ -308,7 +307,7 @@
 
             return (
                 <nav class="glass-card sticky top-0 z-50 p-4">
-                    <div class="container mx-auto flex justify-between items-center">
+                <div class="container mx-auto flex justify-between items-center">
                         <h1 class="text-2xl font-bold glow-text cursor-pointer" onClick={scrollToTop}>
                             Akshay Tembhekar
                         </h1>
@@ -320,9 +319,9 @@
                             <a onClick={() => scrollToSection('education')} class="nav-link hover:text-green-300">Education</a>
                             <a onClick={() => scrollToSection('ai-passion')} class="nav-link hover:text-green-300">AI Passion</a>
                         </div>
-                    </div>
-                </nav>
-            );
+                </div>
+            </nav>
+        );
         };
 
         const Section = ({ id, title, children }) => (
@@ -352,9 +351,8 @@
                     <div class="glass-card p-6 rounded-xl">
                         <h3 class="text-xl font-semibold text-green-300 mb-2">{title}</h3>
                         <p class="text-gray-300 mb-3">{company}, {location} <span class="float-right text-gray-400">{dates}</span></p>
-                        {children}
+                {children}
                     </div>
-                    <div class="timeline-dot"></div>
                 </div>
             );
         };
@@ -378,7 +376,7 @@
 
             return (
                 <div class="relative z-10">
-                    <NavBar />
+                <NavBar />
                     
                     <header class="text-center py-20 relative">
                         <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-10"></div>
@@ -410,29 +408,29 @@
                             <div class="flex flex-wrap justify-center gap-4">
                                 <a href="mailto:akshay.tembhekar@example.com" 
                                    class="glass-card px-6 py-3 rounded-lg hover:bg-green-600 transition-all">
-                                    <i class="fas fa-envelope mr-2"></i>Email
-                                </a>
+                            <i class="fas fa-envelope mr-2"></i>Email
+                        </a>
                                 <a href="tel:+918600768909" 
                                    class="glass-card px-6 py-3 rounded-lg hover:bg-blue-600 transition-all">
-                                    <i class="fas fa-phone mr-2"></i>+91 8600768909
-                                </a>
+                            <i class="fas fa-phone mr-2"></i>+91 8600768909
+                        </a>
                                 <a href="https://linkedin.com/in/akshay-tembhekar-060ba11" target="_blank" 
                                    class="glass-card px-6 py-3 rounded-lg hover:bg-blue-700 transition-all">
-                                    <i class="fab fa-linkedin mr-2"></i>LinkedIn
-                                </a>
+                            <i class="fab fa-linkedin mr-2"></i>LinkedIn
+                        </a>
                                 <a href="https://github.com/AkshayTembhekar21" target="_blank" 
                                    class="glass-card px-6 py-3 rounded-lg hover:bg-gray-700 transition-all">
-                                    <i class="fab fa-github mr-2"></i>GitHub
-                                </a>
+                            <i class="fab fa-github mr-2"></i>GitHub
+                        </a>
                                 <a href="/assets/Akshay_Tembhekar_Resume.pdf" download 
                                    class="bg-gradient-to-r from-green-500 to-blue-500 px-6 py-3 rounded-lg hover:from-green-600 hover:to-blue-600 transition-all">
-                                    <i class="fas fa-file-download mr-2"></i>Download Resume
-                                </a>
+                            <i class="fas fa-file-download mr-2"></i>Download Resume
+                        </a>
                             </div>
-                        </div>
-                    </header>
+                    </div>
+                </header>
 
-                    <Section id="about" title="About Me">
+                <Section id="about" title="About Me">
                         <div class="glass-card p-8 rounded-xl">
                             <p class="text-xl text-gray-300 leading-relaxed">
                                 Experienced Backend Engineer with 7 years in <span class="text-green-300 font-semibold">fintech and enterprise domains</span>. 
@@ -443,16 +441,16 @@
                                 real-world problems in the <span class="text-green-300 font-semibold">trading and financial technology space</span>.
                             </p>
                         </div>
-                    </Section>
+                </Section>
 
-                    <Section id="experience" title="Professional Experience">
+                <Section id="experience" title="Professional Experience">
                         <div class="timeline">
                             <TimelineItem
-                                title="Software Developer (Fintech Domain)"
-                                company="Trading Technologies"
-                                location="Pune"
+                        title="Software Developer (Fintech Domain)"
+                        company="Trading Technologies"
+                        location="Pune"
                                 dates="10/2023 - Present"
-                                isFintech={true}
+                        isFintech={true}
                             >
                                 <ul class="list-disc ml-4 text-gray-300 space-y-2 text-sm">
                                     <li>Mastering the <strong>TT Fixed Income Trading Platform</strong> for global markets</li>
@@ -460,81 +458,85 @@
                                     <li>Transitioned to <strong>microservice-based architecture</strong></li>
                                     <li>Achieved <strong>50% performance improvement</strong> through optimization</li>
                                     <li>Integrated <strong>BLPAPI (Bloomberg BPIPE)</strong> with fault tolerance</li>
-                                </ul>
+                        </ul>
                             </TimelineItem>
+                            <div class="timeline-dot"></div>
                             
                             <TimelineItem
-                                title="Senior Software Engineer"
-                                company="Bee Logical Solutions"
-                                location="Pune"
-                                dates="01/2022 - 10/2023"
+                        title="Senior Software Engineer"
+                        company="Bee Logical Solutions"
+                        location="Pune"
+                        dates="01/2022 - 10/2023"
                             >
                                 <ul class="list-disc ml-4 text-gray-300 space-y-2 text-sm">
                                     <li>Delivered <strong>end-to-end web solutions</strong> using modern frameworks</li>
                                     <li>Developed <strong>backend modules</strong> for LMS and event management</li>
                                     <li>Integrated <strong>Vimeo API</strong> into learning systems</li>
-                                </ul>
+                        </ul>
                             </TimelineItem>
+                            <div class="timeline-dot"></div>
                             
                             <TimelineItem
-                                title="Software Developer (Pharmaceutical Domain)"
-                                company="Excellerate Technology"
-                                location="Pune"
-                                dates="04/2020 - 01/2022"
+                        title="Software Developer (Pharmaceutical Domain)"
+                        company="Excellerate Technology"
+                        location="Pune"
+                        dates="04/2020 - 01/2022"
                             >
                                 <ul class="list-disc ml-4 text-gray-300 space-y-2 text-sm">
                                     <li>Delivered <strong>robust solutions</strong> for pharmaceutical clients</li>
                                     <li>Developed <strong>data validation systems</strong> for drug inventory</li>
                                     <li>Conducted comprehensive <strong>unit testing</strong> with JUnit</li>
-                                </ul>
+                        </ul>
                             </TimelineItem>
+                            <div class="timeline-dot"></div>
                             
                             <TimelineItem
-                                title="Associate Software Developer (Fintech Domain)"
-                                company="NASDAQ"
-                                location="Mumbai"
-                                dates="12/2017 - 03/2020"
-                                isFintech={true}
+                        title="Associate Software Developer (Fintech Domain)"
+                        company="NASDAQ"
+                        location="Mumbai"
+                        dates="12/2017 - 03/2020"
+                        isFintech={true}
                             >
                                 <ul class="list-disc ml-4 text-gray-300 space-y-2 text-sm">
                                     <li>Worked on NASDAQ's <strong>Calypso platform</strong> for trade lifecycle</li>
                                     <li>Engineered <strong>innovative extractors</strong> for trade capture</li>
                                     <li>Mastered comprehensive documentation and development</li>
-                                </ul>
+                        </ul>
                             </TimelineItem>
+                            <div class="timeline-dot"></div>
                         </div>
-                    </Section>
+                </Section>
 
-                    <Section id="projects" title="Projects">
+                <Section id="projects" title="Projects">
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             <ProjectTile
                                 title="CanvasSync: OAuth-Integrated LMS"
                                 description="Secure integration system connecting Java platform with Canvas LMS using OAuth 2.0 authentication."
                                 tools="Java 11, Spring Boot, MySQL, OAuth 2.0"
-                                github="https://github.com/AkshayTembhekar21/CanvasSync"
-                            />
+                        github="https://github.com/AkshayTembhekar21/CanvasSync"
+                    />
                             <ProjectTile
                                 title="MarketPulse: Real-Time Crypto Pipeline"
                                 description="Real-time cryptocurrency market data pipeline using Spring Boot and Apache Kafka."
                                 tools="Spring Boot, Kafka, JPA, WebSocket"
-                                github="https://github.com/AkshayTembhekar21/MarketPulse"
-                            />
+                        github="https://github.com/AkshayTembhekar21/MarketPulse"
+                    />
                             <ProjectTile
                                 title="RAGAI: Confluence QA Assistant"
                                 description="Production-ready RAG system for querying internal knowledge bases using natural language."
                                 tools="Python, OpenAI API, Pinecone, LangChain"
-                                github="https://github.com/AkshayTembhekar21/RAGAI"
-                            />
+                        github="https://github.com/AkshayTembhekar21/RAGAI"
+                    />
                             <ProjectTile
                                 title="HR Recruiter: AI Resume Screening"
                                 description="AI-powered tool to streamline resume screening using Python and NLP techniques."
                                 tools="Python, PyPDF2, OpenAI API, Streamlit"
-                                github="https://github.com/AkshayTembhekar21/hr-recruiter"
-                            />
+                        github="https://github.com/AkshayTembhekar21/hr-recruiter"
+                    />
                         </div>
-                    </Section>
+                </Section>
 
-                    <Section id="skills" title="Skills">
+                <Section id="skills" title="Skills">
                         <div class="glass-card p-8 rounded-xl">
                             <div class="flex flex-wrap justify-center">
                                 <SkillIcon 
@@ -582,32 +584,32 @@
                                     name="JUnit" 
                                 />
                             </div>
-                        </div>
-                    </Section>
+                    </div>
+                </Section>
 
-                    <Section id="education" title="Education">
+                <Section id="education" title="Education">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="glass-card p-6 rounded-xl">
                                 <h3 class="text-xl font-semibold text-green-300 mb-3">Computer Science - Master's Degree (MSc)</h3>
                                 <p class="text-gray-300 mb-3">University of Pune, Pune <span class="float-right text-gray-400">06/2016 - 06/2018</span></p>
                                 <ul class="list-disc ml-5 text-gray-300 space-y-1">
-                                    <li>Graduated with a <strong>CGPA of 9.2</strong>, ranking <strong>top of the class</strong> in multiple semesters.</li>
-                                    <li>Recognized as the <strong>topper</strong> and <strong>awarded</strong> during the program.</li>
-                                </ul>
-                            </div>
+                            <li>Graduated with a <strong>CGPA of 9.2</strong>, ranking <strong>top of the class</strong> in multiple semesters.</li>
+                            <li>Recognized as the <strong>topper</strong> and <strong>awarded</strong> during the program.</li>
+                        </ul>
+                    </div>
                             <div class="glass-card p-6 rounded-xl">
                                 <h3 class="text-xl font-semibold text-green-300 mb-3">Computer Science - Bachelor's Degree (BSc)</h3>
                                 <p class="text-gray-300 mb-3">University of Pune, Pune <span class="float-right text-gray-400">06/2013 - 06/2016</span></p>
                                 <ul class="list-disc ml-5 text-gray-300 space-y-1">
-                                    <li>Graduated with <strong>First Class</strong>.</li>
-                                    <li>Secured <strong>1st position</strong> in a <strong>project competition</strong> in 2015 and 2016.</li>
-                                    <li>Won <strong>2nd position</strong> in a <strong>project competition</strong> held by Modern College of Science.</li>
-                                </ul>
+                            <li>Graduated with <strong>First Class</strong>.</li>
+                            <li>Secured <strong>1st position</strong> in a <strong>project competition</strong> in 2015 and 2016.</li>
+                            <li>Won <strong>2nd position</strong> in a <strong>project competition</strong> held by Modern College of Science.</li>
+                        </ul>
                             </div>
-                        </div>
-                    </Section>
+                    </div>
+                </Section>
 
-                    <Section id="ai-passion" title="Passion for AI Learning">
+                <Section id="ai-passion" title="Passion for AI Learning">
                         <div class="glass-card p-8 rounded-xl">
                             <p class="text-xl text-gray-300 mb-6">
                                 Passionate about AI and its applications in modern software development. Explore my AI work:
@@ -631,13 +633,13 @@
                                 </div>
                             </div>
                         </div>
-                    </Section>
+                </Section>
 
                     <footer class="glass-card text-center py-8 mt-16">
                         <p class="text-gray-300">© 2025 Akshay Tembhekar. Building innovative solutions for tomorrow.</p>
-                    </footer>
-                </div>
-            );
+                </footer>
+            </div>
+        );
         };
 
         ReactDOM.render(<App />, document.getElementById('root'));
