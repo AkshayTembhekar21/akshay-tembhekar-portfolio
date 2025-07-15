@@ -174,6 +174,12 @@
         /* Fix bullet point alignment for odd timeline items */
         .timeline-item:nth-of-type(odd) ul {
             text-align: left;
+            padding-left: 0;
+        }
+
+        .timeline-item:nth-of-type(even) ul {
+            text-align: left;
+            padding-left: 0;
         }
 
         .timeline-dot {
@@ -191,13 +197,11 @@
         }
 
         .timeline-item:nth-of-type(odd) .timeline-dot {
-            right: -6px;
-            left: auto;
+            /* Remove conflicting positioning */
         }
 
         .timeline-item:nth-of-type(even) .timeline-dot {
-            left: -6px;
-            right: auto;
+            /* Remove conflicting positioning */
         }
 
         /* Skill Icons */
