@@ -182,28 +182,6 @@
             padding-left: 0;
         }
 
-        .timeline-dot {
-            position: absolute;
-            top: 30px;
-            width: 12px;
-            height: 12px;
-            background: #22c55e;
-            border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-        }
-
-        .timeline-item:nth-of-type(odd) .timeline-dot {
-            /* Remove conflicting positioning */
-        }
-
-        .timeline-item:nth-of-type(even) .timeline-dot {
-            /* Remove conflicting positioning */
-        }
-
         /* Skill Icons */
         .skill-icon {
             display: inline-block;
@@ -369,7 +347,6 @@
                         <p class="text-gray-300 mb-3">{company}, {location} <span class="float-right text-gray-400">{dates}</span></p>
                         {children}
                     </div>
-                    <div class="timeline-dot"></div>
                 </div>
             );
         };
@@ -382,18 +359,9 @@
         );
 
         const App = () => {
-            const [currentTime, setCurrentTime] = useState(new Date());
-
-            useEffect(() => {
-                const timer = setInterval(() => setCurrentTime(new Date()), 1000);
-                return () => clearInterval(timer);
-            }, []);
-
-
-
             return (
                 <div class="relative z-10">
-                <NavBar />
+                    <NavBar />
                     
                     <header class="text-center py-20 relative">
                         <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-10"></div>
@@ -409,10 +377,6 @@
                                 From microservices to AI integration, I transform complex challenges into elegant solutions.
                             </p>
                             <div class="flex flex-wrap justify-center gap-4 mb-8">
-                                <div class="glass-card px-4 py-2 rounded-full">
-                                    <i class="fas fa-clock mr-2 text-green-300"></i>
-                                    {currentTime.toLocaleTimeString()}
-                                </div>
                                 <div class="glass-card px-4 py-2 rounded-full">
                                     <i class="fas fa-chart-line mr-2 text-blue-300"></i>
                                     Real-time Systems
