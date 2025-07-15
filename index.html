@@ -171,6 +171,11 @@
             text-align: left;
         }
 
+        /* Fix bullet point alignment for odd timeline items */
+        .timeline-item:nth-child(odd) ul {
+            text-align: left;
+        }
+
         .timeline-dot {
             position: absolute;
             top: 30px;
@@ -180,14 +185,8 @@
             border-radius: 50%;
             border: 2px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
-        }
-
-        .timeline-item:nth-child(odd) .timeline-dot {
-            right: -6px;
-        }
-
-        .timeline-item:nth-child(even) .timeline-dot {
-            left: -6px;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         /* Skill Icons */
@@ -271,8 +270,8 @@
             }
 
             .timeline-dot {
-                left: 10px !important;
-                right: auto !important;
+                left: 20px !important;
+                transform: none !important;
                 width: 10px;
                 height: 10px;
             }
