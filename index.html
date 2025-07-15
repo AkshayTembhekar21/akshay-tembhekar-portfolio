@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akshay Tembhekar - Trading Technology Expert</title>
+    <title>Akshay Tembhekar - Software Engineer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -16,16 +16,25 @@
             font-family: 'Inter', sans-serif;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
         /* Trading Background Animation */
         .trading-bg {
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%);
             position: relative;
             overflow: hidden;
+            min-height: 100vh;
         }
 
         .trading-bg::before {
             content: '';
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             right: 0;
@@ -35,6 +44,8 @@
                 radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 40% 40%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
             animation: backgroundShift 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: -1;
         }
 
         @keyframes backgroundShift {
@@ -44,10 +55,12 @@
 
         /* Animated Trading Charts */
         .chart-line {
-            position: absolute;
+            position: fixed;
             height: 2px;
             background: linear-gradient(90deg, #22c55e, #3b82f6, #a855f7);
             animation: chartMove 8s linear infinite;
+            pointer-events: none;
+            z-index: -1;
         }
 
         .chart-line:nth-child(1) { top: 15%; width: 60%; animation-delay: 0s; }
@@ -108,9 +121,11 @@
 
         /* Floating Elements */
         .floating-element {
-            position: absolute;
+            position: fixed;
             opacity: 0.1;
             animation: float 6s ease-in-out infinite;
+            pointer-events: none;
+            z-index: -1;
         }
 
         .floating-element:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
@@ -155,6 +170,7 @@
         .nav-link {
             position: relative;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .nav-link::after {
@@ -218,9 +234,14 @@
                 display: none;
             }
         }
+
+        /* Smooth scrolling for navigation */
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
-<body class="trading-bg text-gray-200 min-h-screen">
+<body class="trading-bg text-gray-200">
     <!-- Animated Background Elements -->
     <div class="chart-line"></div>
     <div class="chart-line"></div>
@@ -260,21 +281,36 @@
             </div>
         );
 
-        const NavBar = () => (
-            <nav class="glass-card sticky top-0 z-50 p-4">
-                <div class="container mx-auto flex justify-between items-center">
-                    <h1 class="text-2xl font-bold glow-text">Akshay Tembhekar</h1>
-                    <div class="hidden md:flex space-x-6">
-                        <a href="#about" class="nav-link hover:text-green-300">About</a>
-                        <a href="#experience" class="nav-link hover:text-green-300">Experience</a>
-                        <a href="#projects" class="nav-link hover:text-green-300">Projects</a>
-                        <a href="#skills" class="nav-link hover:text-green-300">Skills</a>
-                        <a href="#education" class="nav-link hover:text-green-300">Education</a>
-                        <a href="#ai-passion" class="nav-link hover:text-green-300">AI Passion</a>
+        const NavBar = () => {
+            const scrollToTop = () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
+            const scrollToSection = (sectionId) => {
+                const element = document.getElementById(sectionId);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            };
+
+            return (
+                <nav class="glass-card sticky top-0 z-50 p-4">
+                    <div class="container mx-auto flex justify-between items-center">
+                        <h1 class="text-2xl font-bold glow-text cursor-pointer" onClick={scrollToTop}>
+                            Akshay Tembhekar
+                        </h1>
+                        <div class="hidden md:flex space-x-6">
+                            <a onClick={() => scrollToSection('about')} class="nav-link hover:text-green-300">About</a>
+                            <a onClick={() => scrollToSection('experience')} class="nav-link hover:text-green-300">Experience</a>
+                            <a onClick={() => scrollToSection('projects')} class="nav-link hover:text-green-300">Projects</a>
+                            <a onClick={() => scrollToSection('skills')} class="nav-link hover:text-green-300">Skills</a>
+                            <a onClick={() => scrollToSection('education')} class="nav-link hover:text-green-300">Education</a>
+                            <a onClick={() => scrollToSection('ai-passion')} class="nav-link hover:text-green-300">AI Passion</a>
+                        </div>
                     </div>
-                </div>
-            </nav>
-        );
+                </nav>
+            );
+        };
 
         const Section = ({ id, title, children }) => (
             <section id={id} class="py-16 container mx-auto px-4 fade-in">
@@ -324,21 +360,29 @@
             }, []);
 
             return (
-                <div>
+                <div class="relative z-10">
                     <TradingTicker />
                     <NavBar />
                     
                     <header class="text-center py-20 relative">
                         <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-20"></div>
                         <div class="relative z-10">
+                            <div class="mb-8">
+                                <h2 class="text-2xl md:text-3xl text-green-300 mb-4">Hi, I'm Akshay</h2>
+                                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                                    My journey as a software engineer is driven by curiosity and a passion for innovation. 
+                                    I believe in building solutions that make a difference, one line of code at a time.
+                                </p>
+                            </div>
+                            
                             <h1 class="text-6xl md:text-7xl font-black mb-4 glow-text">
                                 Akshay Tembhekar
                             </h1>
                             <p class="text-2xl md:text-3xl mb-6 text-gray-300">
-                                Trading Technology Expert | Backend Engineer | AI Enthusiast
+                                Backend Engineer | Java Expert | AI Enthusiast
                             </p>
                             <p class="text-lg text-gray-400 mb-8">
-                                Building the future of financial technology with lightning-fast trade execution
+                                Building scalable systems and innovative solutions for the future
                             </p>
                             <div class="flex flex-wrap justify-center gap-4 mb-8">
                                 <div class="glass-card px-4 py-2 rounded-full">
@@ -347,7 +391,7 @@
                                 </div>
                                 <div class="glass-card px-4 py-2 rounded-full">
                                     <i class="fas fa-chart-line mr-2 text-blue-300"></i>
-                                    Real-time Trading
+                                    Real-time Systems
                                 </div>
                                 <div class="glass-card px-4 py-2 rounded-full">
                                     <i class="fas fa-microchip mr-2 text-purple-300"></i>
@@ -382,9 +426,9 @@
                     <Section id="about" title="About Me">
                         <div class="glass-card p-8 rounded-xl">
                             <p class="text-xl text-gray-300 leading-relaxed">
-                                Experienced Backend Engineer with 7 years in <span class="text-green-300 font-semibold">fintech and trading domains</span>. 
-                                Skilled in developing <span class="text-blue-300 font-semibold">lightning-fast trading systems</span>, transitioning to 
-                                microservices, and maintaining <span class="text-purple-300 font-semibold">high-performance financial platforms</span>. 
+                                Experienced Backend Engineer with 7 years in <span class="text-green-300 font-semibold">fintech and enterprise domains</span>. 
+                                Skilled in developing <span class="text-blue-300 font-semibold">scalable backend services</span>, transitioning to 
+                                microservices, and maintaining <span class="text-purple-300 font-semibold">high-performance systems</span>. 
                                 Proficient in Java, Spring Boot, and event-driven architectures with a strong focus on TDD and system reliability. 
                                 Passionate about AI, demonstrated through projects like RAGAI and HR Recruiter, with a focus on technologies to solve 
                                 real-world problems in the <span class="text-green-300 font-semibold">trading and financial technology space</span>.
@@ -543,7 +587,7 @@
                     <Section id="ai-passion" title="Passion for AI Learning">
                         <div class="glass-card p-8 rounded-xl">
                             <p class="text-xl text-gray-300 mb-6">
-                                Passionate about AI and its applications in trading and financial technology. Explore my AI work:
+                                Passionate about AI and its applications in modern software development. Explore my AI work:
                             </p>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div class="glass-card p-4 rounded-lg">
@@ -567,7 +611,7 @@
                     </Section>
 
                     <footer class="glass-card text-center py-8 mt-16">
-                        <p class="text-gray-300">© 2025 Akshay Tembhekar. Building the future of trading technology.</p>
+                        <p class="text-gray-300">© 2025 Akshay Tembhekar. Building innovative solutions for tomorrow.</p>
                     </footer>
                 </div>
             );
