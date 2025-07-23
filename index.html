@@ -5,275 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Akshay Tembhekar - Software Engineer</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-        
-        * {
-            font-family: 'Inter', sans-serif;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            overflow-x: hidden;
-            overflow-y: scroll;
-        }
-
-        /* Clean Black Background */
-        .trading-bg {
-            background: #000000;
-            position: relative;
-            overflow: visible;
-            min-height: 100vh;
-        }
-
-        .trading-bg::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(34, 197, 94, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(168, 85, 247, 0.05) 0%, transparent 50%);
-            animation: backgroundShift 30s ease-in-out infinite;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        @keyframes backgroundShift {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.05) rotate(0.5deg); }
-        }
-
-        /* Glassmorphism Cards */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-        }
-
-        .glass-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(34, 197, 94, 0.2);
-            transform: translateY(-5px);
-            transition: all 0.3s ease;
-        }
-
-        /* Floating Elements */
-        .floating-element {
-            position: fixed;
-            opacity: 0.03;
-            animation: float 8s ease-in-out infinite;
-            pointer-events: none;
-            z-index: -1;
-        }
-
+        * { font-family: 'Inter', sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { overflow-x: hidden; overflow-y: scroll; }
+        .trading-bg { background: #000000; position: relative; overflow: visible; min-height: 100vh; }
+        .trading-bg::before { content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 20% 80%, rgba(34, 197, 94, 0.05) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 50%), radial-gradient(circle at 40% 40%, rgba(168, 85, 247, 0.05) 0%, transparent 50%); animation: backgroundShift 30s ease-in-out infinite; pointer-events: none; z-index: -1; }
+        @keyframes backgroundShift { 0%, 100% { transform: scale(1) rotate(0deg); } 50% { transform: scale(1.05) rotate(0.5deg); } }
+        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); }
+        .glass-card:hover { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(34, 197, 94, 0.2); transform: translateY(-5px); transition: all 0.3s ease; }
+        .floating-element { position: fixed; opacity: 0.03; animation: float 8s ease-in-out infinite; pointer-events: none; z-index: -1; }
         .floating-element:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
         .floating-element:nth-child(2) { top: 20%; right: 15%; animation-delay: 2s; }
         .floating-element:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 4s; }
         .floating-element:nth-child(4) { bottom: 20%; right: 10%; animation-delay: 6s; }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(90deg); }
-        }
-
-        /* Glow Effects */
-        .glow-text {
-            text-shadow: 0 0 15px rgba(34, 197, 94, 0.3);
-        }
-
-        .glow-border {
-            box-shadow: 0 0 15px rgba(34, 197, 94, 0.2);
-        }
-
-        /* Smooth Animations */
-        .fade-in {
-            animation: fadeIn 1s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .slide-in-left {
-            animation: slideInLeft 0.8s ease-out;
-        }
-
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        /* Navigation */
-        .nav-link {
-            position: relative;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #22c55e, #3b82f6);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        /* Timeline */
-        .timeline {
-            position: relative;
-            padding: 20px 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, #22c55e, #3b82f6, #a855f7);
-            transform: translateX(-50%);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 40px;
-            width: 45%;
-        }
-
-        .timeline-item:nth-of-type(odd) {
-            left: 0;
-            text-align: right;
-        }
-
-        .timeline-item:nth-of-type(even) {
-            left: 55%;
-            text-align: left;
-        }
-
-        /* Fix bullet point alignment for odd timeline items */
-        .timeline-item:nth-of-type(odd) ul {
-            text-align: left;
-            padding-left: 0;
-        }
-
-        .timeline-item:nth-of-type(even) ul {
-            text-align: left;
-            padding-left: 0;
-        }
-
-        /* Skill Icons */
-        .skill-icon {
-            display: inline-block;
-            margin: 10px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            text-align: center;
-            transition: all 0.3s ease;
-            animation: skillFloat 4s ease-in-out infinite;
-        }
-
-        .skill-icon:nth-child(1) { animation-delay: 0s; }
-        .skill-icon:nth-child(2) { animation-delay: 0.5s; }
-        .skill-icon:nth-child(3) { animation-delay: 1s; }
-        .skill-icon:nth-child(4) { animation-delay: 1.5s; }
-        .skill-icon:nth-child(5) { animation-delay: 2s; }
-        .skill-icon:nth-child(6) { animation-delay: 2.5s; }
-        .skill-icon:nth-child(7) { animation-delay: 3s; }
-        .skill-icon:nth-child(8) { animation-delay: 3.5s; }
-
-        @keyframes skillFloat {
-            0%, 100% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-8px) scale(1.03); }
-        }
-
-        .skill-icon:hover {
-            transform: translateY(-12px) scale(1.08);
-            background: rgba(34, 197, 94, 0.05);
-            border-color: rgba(34, 197, 94, 0.2);
-            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.15);
-        }
-
-        .skill-icon img {
-            width: 40px;
-            height: 40px;
-            margin-bottom: 8px;
-        }
-
-        /* Project Tiles */
-        .project-tile {
-            aspect-ratio: 1;
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            transition: all 0.3s ease;
-            transform-style: preserve-3d;
-            position: relative;
-        }
-
-        .project-tile:hover {
-            transform: perspective(1000px) rotateX(8deg) rotateY(8deg);
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(34, 197, 94, 0.2);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .floating-element {
-                display: none;
-            }
-
-            .timeline::before {
-                left: 20px;
-            }
-
-            .timeline-item {
-                width: 100%;
-                left: 0 !important;
-                text-align: left !important;
-                padding-left: 50px;
-            }
-
-            .timeline-dot {
-                left: 20px !important;
-                transform: none !important;
-                width: 10px;
-                height: 10px;
-            }
-        }
-
-        /* Smooth scrolling for navigation */
-        .smooth-scroll {
-            scroll-behavior: smooth;
-        }
+        @keyframes float { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-15px) rotate(90deg); } }
+        .glow-text { text-shadow: 0 0 15px rgba(34, 197, 94, 0.3); }
+        .glow-border { box-shadow: 0 0 15px rgba(34, 197, 94, 0.2); }
+        .fade-in { animation: fadeIn 1s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .slide-in-left { animation: slideInLeft 0.8s ease-out; }
+        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+        .nav-link { position: relative; transition: all 0.3s ease; cursor: pointer; }
+        .nav-link::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #22c55e, #3b82f6); transition: width 0.3s ease; }
+        .nav-link:hover::after { width: 100%; }
+        .timeline { position: relative; padding: 20px 0; }
+        .timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, #22c55e, #3b82f6, #a855f7); transform: translateX(-50%); }
+        .timeline-item { position: relative; margin-bottom: 40px; width: 45%; }
+        .timeline-item:nth-of-type(odd) { left: 0; text-align: right; }
+        .timeline-item:nth-of-type(even) { left: 55%; text-align: left; }
+        .timeline-item:nth-of-type(odd) ul { text-align: left; padding-left: 0; }
+        .timeline-item:nth-of-type(even) ul { text-align: left; padding-left: 0; }
+        .skill-icon { display: inline-block; margin: 10px; padding: 20px; background: rgba(255, 255, 255, 0.02); border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: center; transition: all 0.3s ease; animation: skillFloat 4s ease-in-out infinite; }
+        .skill-icon img { width: 40px; height: 40px; margin-bottom: 8px; }
+        @keyframes skillFloat { 0%, 100% { transform: translateY(0px) scale(1); } 50% { transform: translateY(-8px) scale(1.03); } }
+        .skill-icon:hover { transform: translateY(-12px) scale(1.08); background: rgba(34, 197, 94, 0.05); border-color: rgba(34, 197, 94, 0.2); box-shadow: 0 8px 25px rgba(34, 197, 94, 0.15); }
+        .project-tile { aspect-ratio: 1; background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 15px; padding: 20px; display: flex; flex-direction: column; justify-content: flex-start; transition: all 0.3s ease; transform-style: preserve-3d; position: relative; }
+        .project-tile:hover { transform: perspective(1000px) rotateX(8deg) rotateY(8deg); background: rgba(255, 255, 255, 0.05); border-color: rgba(34, 197, 94, 0.2); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); }
+        @media (max-width: 768px) { .floating-element { display: none; } .timeline::before { left: 20px; } .timeline-item { width: 100%; left: 0 !important; text-align: left !important; padding-left: 50px; } .timeline-dot { left: 20px !important; transform: none !important; width: 10px; height: 10px; } }
+        .smooth-scroll { scroll-behavior: smooth; }
     </style>
 </head>
 <body class="trading-bg text-gray-200">
@@ -283,366 +55,236 @@
     <div class="floating-element text-4xl">⚡</div>
     <div class="floating-element text-4xl">🚀</div>
 
-    <div id="root"></div>
-    <script type="text/babel">
-        const { useState, useEffect } = React;
+    <!-- Navigation Bar -->
+    <nav class="glass-card sticky top-0 z-50 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold glow-text cursor-pointer">Akshay Tembhekar</h1>
+            <div class="hidden md:flex space-x-6">
+                <a href="#about" class="nav-link hover:text-green-300">About</a>
+                <a href="#experience" class="nav-link hover:text-green-300">Experience</a>
+                <a href="#projects" class="nav-link hover:text-green-300">Projects</a>
+                <a href="#skills" class="nav-link hover:text-green-300">Skills</a>
+                <a href="#education" class="nav-link hover:text-green-300">Education</a>
+                <a href="#ai-passion" class="nav-link hover:text-green-300">AI Passion</a>
+            </div>
+        </div>
+    </nav>
 
-        const NavBar = () => {
-            const scrollToTop = () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            };
-
-            const scrollToSection = (sectionId) => {
-                const element = document.getElementById(sectionId);
-                if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
-                }
-            };
-
-            return (
-                <nav class="glass-card sticky top-0 z-50 p-4">
-                <div class="container mx-auto flex justify-between items-center">
-                        <h1 class="text-2xl font-bold glow-text cursor-pointer" onClick={scrollToTop}>
-                            Akshay Tembhekar
-                        </h1>
-                        <div class="hidden md:flex space-x-6">
-                            <a onClick={() => scrollToSection('about')} class="nav-link hover:text-green-300">About</a>
-                            <a onClick={() => scrollToSection('experience')} class="nav-link hover:text-green-300">Experience</a>
-                            <a onClick={() => scrollToSection('projects')} class="nav-link hover:text-green-300">Projects</a>
-                            <a onClick={() => scrollToSection('skills')} class="nav-link hover:text-green-300">Skills</a>
-                            <a onClick={() => scrollToSection('education')} class="nav-link hover:text-green-300">Education</a>
-                            <a onClick={() => scrollToSection('ai-passion')} class="nav-link hover:text-green-300">AI Passion</a>
-                        </div>
+    <!-- Header -->
+    <header class="text-center py-20 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-10"></div>
+        <div class="relative z-10">
+            <h1 class="text-6xl md:text-7xl font-black mb-4 glow-text">Akshay Tembhekar</h1>
+            <p class="text-2xl md:text-3xl mb-6 text-gray-300">Software Engineer | Java Expert | AI Enthusiast</p>
+            <p class="text-lg text-gray-400 mb-8 max-w-3xl mx-auto">
+                Crafting robust backend solutions and innovative systems that power the digital future. 
+                From microservices to AI integration, I transform complex challenges into elegant solutions.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+                <div class="glass-card px-4 py-2 rounded-full">
+                    <i class="fas fa-chart-line mr-2 text-blue-300"></i>Real-time Systems
                 </div>
-            </nav>
-        );
-        };
+                <div class="glass-card px-4 py-2 rounded-full">
+                    <i class="fas fa-microchip mr-2 text-purple-300"></i>AI-Powered Solutions
+                </div>
+            </div>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="mailto:akshay.tembhekar@example.com" class="glass-card px-6 py-3 rounded-lg hover:bg-green-600 transition-all"><i class="fas fa-envelope mr-2"></i>Email</a>
+                <a href="tel:+918600768909" class="glass-card px-6 py-3 rounded-lg hover:bg-blue-600 transition-all"><i class="fas fa-phone mr-2"></i>+91 8600768909</a>
+                <a href="https://www.linkedin.com/in/akshay-tembhekar-akshaytembhekar" target="_blank" class="glass-card px-6 py-3 rounded-lg hover:bg-blue-700 transition-all cursor-pointer"><i class="fab fa-linkedin mr-2"></i>LinkedIn</a>
+                <a href="https://github.com/AkshayTembhekar21" target="_blank" class="glass-card px-6 py-3 rounded-lg hover:bg-gray-700 transition-all"><i class="fab fa-github mr-2"></i>GitHub</a>
+                <a href="./assets/AkshayTembhekar-Resume.pdf" download class="bg-gradient-to-r from-green-500 to-blue-500 px-6 py-3 rounded-lg hover:from-green-600 hover:to-blue-600 transition-all"><i class="fas fa-file-download mr-2"></i>Download Resume</a>
+            </div>
+        </div>
+    </header>
 
-        const Section = ({ id, title, children }) => (
-            <section id={id} class="py-16 container mx-auto px-4 fade-in">
-                <h2 class="text-4xl font-bold mb-8 text-center glow-text">{title}</h2>
-                {children}
-            </section>
-        );
+    <!-- About Section -->
+    <section id="about" class="py-16 container mx-auto px-4 fade-in">
+        <h2 class="text-4xl font-bold mb-8 text-center glow-text">About Me</h2>
+        <div class="glass-card p-8 rounded-xl">
+            <p class="text-xl text-gray-300 leading-relaxed">
+                Experienced Backend Engineer with 7 years in <span class="text-green-300 font-semibold">fintech and enterprise domains</span>. 
+                Skilled in developing <span class="text-blue-300 font-semibold">scalable backend services</span>, transitioning to 
+                microservices, and maintaining <span class="text-purple-300 font-semibold">high-performance systems</span>. 
+                Proficient in Java, Spring Boot, and event-driven architectures with a strong focus on TDD and system reliability. 
+                Passionate about AI, demonstrated through projects like RAGAI and HR Recruiter, with a focus on technologies to solve 
+                real-world problems in the <span class="text-green-300 font-semibold">trading and financial technology space</span>.
+            </p>
+        </div>
+    </section>
 
-        const ProjectTile = ({ title, description, tools, github }) => (
+    <!-- Professional Experience Section -->
+    <section id="experience" class="py-16 container mx-auto px-4 fade-in">
+        <h2 class="text-4xl font-bold mb-8 text-center glow-text">Professional Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item glow-border">
+                <div class="glass-card p-6 rounded-xl">
+                    <h3 class="text-xl font-semibold text-green-300 mb-2">Software Developer (Fintech Domain)</h3>
+                    <p class="text-gray-300 mb-3">Trading Technologies, Pune <span class="float-right text-gray-400">10/2023 - Present</span></p>
+                    <ul class="list-disc ml-4 text-gray-300 space-y-2 text-sm">
+                        <li>Designed and developed critical trading workflows, including Market On Close (MOC) and Switch RFM, enabling efficient handling of order execution and pricing logic.</li>
+                        <li>Implemented a hybrid architecture that integrates legacy monolithic systems with modern web applications using event-driven communication via Publisher-Subscriber pattern.</li>
+                        <li>Enabled real-time market data updates by leveraging WebSockets for seamless server-market-interface communication.</li>
+                        <li>Transitioned essential services to a microservices-based architecture to significantly improve system scalability, maintainability, and responsiveness.</li>
+                        <li>Optimized the Pricing Sheet module for a key client, achieving 80% performance improvement through database tuning and code refactoring.</li>
+                        <li>Followed Test-Driven Development (TDD) practices to ensure delivery of clean, testable, and production ready code aligned with business requirements.</li>
+                        <li>Collaborated with cross-functional teams to streamline workflows, eliminate bottlenecks, and deliver high-impact solutions in a fast-paced trading environment.</li>
+                        <li>Managed a team of 3 developers to deliver product features (Trading workflows) such as MOC and Switch RFM.</li>
+                        <li>Utilized development and programming expertise to create scalable and robust solutions for merchant integrations, ensuring adherence to payment best practices that improved transaction success rates by 30%.</li>
+                        <li>Developed and maintained backend services as a Java engineer, focusing on the building blocks of Application Services to enhance system reliability.</li>
+                        <li><strong>Tools & Technologies:</strong> Java, Spring Boot, Hibernate, Microservices/Distributed Systems, WebSockets, TDD, Event-Driven Architecture, JProfiler, JavaFX.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="glass-card p-6 rounded-xl">
+                    <h3 class="text-xl font-semibold text-green-300 mb-2">Senior Software Engineer</h3>
+                    <p class="text-gray-300 mb-3">Bee Logical Solutions, Pune <span class="float-right text-gray-400">01/2022 - 10/2023</span></p>
+                    <ul class="list-disc ml-4 text-gray-300 space-y-2 text-sm">
+                        <li>Worked as a web developer, delivering end-to-end solutions using Handlebars.js and Backbone.js.</li>
+                        <li>Developed backend modules for features such as On-Demand Video Training, Membership, and Event management.</li>
+                        <li>Integrated Vimeo API into the Learning Management System (LMS) module to enhance functionality.</li>
+                        <li>Followed the Waterfall development model for project execution.</li>
+                        <li><strong>Tools:</strong> Handlebars.js, Backbone.js, LMS module, Waterfall development.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="glass-card p-6 rounded-xl">
+                    <h3 class="text-xl font-semibold text-green-300 mb-2">Software Developer (Pharmaceutical Domain)</h3>
+                    <p class="text-gray-300 mb-3">Excellerate Technology, Pune <span class="float-right text-gray-400">04/2020 - 01/2022</span></p>
+                    <ul class="list-disc ml-4 text-gray-300 space-y-2 text-sm">
+                        <li>Worked as a back-end developer, delivering robust solutions for client user stories in the pharmaceutical domain.</li>
+                        <li>Developed key application phases such as Data Entry, Validation, and Filling using Java Swing and Angular.</li>
+                        <li>Provided technical capital expertise to business stakeholders, ensuring alignment with project goals and delivering impactful solutions.</li>
+                        <li>Conducted unit testing using JUnit, ensuring comprehensive test coverage and reliable code.</li>
+                        <li>Adhered to Agile methodologies, collaborating with cross-functional teams to meet evolving project requirements.</li>
+                        <li><strong>Tools & Technologies:</strong> Java, Swing, Angular, JUnit, SQL, Git, TDD, Agile, SpringBoot, Hibernate, REST.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item glow-border">
+                <div class="glass-card p-6 rounded-xl">
+                    <h3 class="text-xl font-semibold text-green-300 mb-2">Associate Software Developer (Fintech Domain)</h3>
+                    <p class="text-gray-300 mb-3">NASDAQ, Mumbai <span class="float-right text-gray-400">12/2017 - 03/2020</span></p>
+                    <ul class="list-disc ml-4 text-gray-300 space-y-2 text-sm">
+                        <li>Implemented end-to-end solutions for trade life-cycle phases such as trade capture and pricing for multiple derivative products.</li>
+                        <li>Followed industry-standard practices to implement trade capture and pricing features, contributing to backend scalability and maintainability.</li>
+                        <li>Organized and proactively participated in daily meetings with stakeholders to resolve conflicts and brainstorm new requirements.</li>
+                        <li>Followed comprehensive documentation, ensuring documentation was completed alongside development.</li>
+                        <li><strong>Tools & Technologies:</strong> Java, Spring Boot, Hibernate, SQL, Git, Eclipse, Confluence, Log4j, Agile Methodology.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 container mx-auto px-4 fade-in">
+        <h2 class="text-4xl font-bold mb-8 text-center glow-text">Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div class="project-tile">
                 <div class="flex-1">
-                    <h3 class="text-xl font-semibold text-green-300 mb-3">{title}</h3>
-                    <p class="text-gray-300 mb-4 text-sm">{description}</p>
-                    <p class="text-gray-400 text-xs"><strong>Tools:</strong> {tools}</p>
+                    <h3 class="text-xl font-semibold text-green-300 mb-3">CanvasSync: OAuth-Integrated LMS</h3>
+                    <p class="text-gray-300 mb-4 text-sm">Secure integration system connecting Java platform with Canvas LMS using OAuth 2.0 authentication.</p>
+                    <p class="text-gray-400 text-xs"><strong>Tools:</strong> Java 11, Spring Boot, MySQL, OAuth 2.0</p>
                 </div>
-                <a href={github} target="_blank" rel="noopener noreferrer" 
-                   class="inline-flex items-center text-green-300 hover:text-white transition-colors text-sm mt-auto">
-                    <i class="fab fa-github mr-2"></i>View on GitHub
-                </a>
+                <a href="https://github.com/AkshayTembhekar21/CanvasSync" target="_blank" class="inline-flex items-center text-green-300 hover:text-white transition-colors text-sm mt-auto"><i class="fab fa-github mr-2"></i>View on GitHub</a>
             </div>
-        );
-
-        const TimelineItem = ({ title, company, location, dates, children, isFintech }) => {
-            return (
-                <div class={`timeline-item ${isFintech ? 'glow-border' : ''}`}>
-                    <div class="glass-card p-6 rounded-xl">
-                        <h3 class="text-xl font-semibold text-green-300 mb-2">{title}</h3>
-                        <p class="text-gray-300 mb-3">{company}, {location} <span class="float-right text-gray-400">{dates}</span></p>
-                        {children}
-                    </div>
+            <div class="project-tile">
+                <div class="flex-1">
+                    <h3 class="text-xl font-semibold text-green-300 mb-3">MarketPulse: Real-Time Crypto Pipeline</h3>
+                    <p class="text-gray-300 mb-4 text-sm">Real-time cryptocurrency market data pipeline using Spring Boot and Apache Kafka.</p>
+                    <p class="text-gray-400 text-xs"><strong>Tools:</strong> Spring Boot, Kafka, JPA, WebSocket</p>
                 </div>
-            );
-        };
-
-        const SkillIcon = ({ logo, name, color = "text-green-300" }) => (
-            <div class="skill-icon">
-                <img src={logo} alt={name} class="mx-auto" />
-                <div class="text-sm font-medium">{name}</div>
+                <a href="https://github.com/AkshayTembhekar21/MarketPulse" target="_blank" class="inline-flex items-center text-green-300 hover:text-white transition-colors text-sm mt-auto"><i class="fab fa-github mr-2"></i>View on GitHub</a>
             </div>
-        );
-
-        const App = () => {
-            const openLinkedIn = () => {
-                const url = 'https://www.linkedin.com/in/akshay-tembhekar-akshaytembhekar';
-                // Try to open in new tab, fallback to same window if needed
-                try {
-                    window.open(url, '_blank', 'noopener,noreferrer');
-                } catch (e) {
-                    window.location.href = url;
-                }
-            };
-
-            return (
-                <div class="relative z-10">
-                    <NavBar />
-                    
-                    <header class="text-center py-20 relative">
-                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-10"></div>
-                        <div class="relative z-10">
-                            <h1 class="text-6xl md:text-7xl font-black mb-4 glow-text">
-                                Akshay Tembhekar
-                            </h1>
-                            <p class="text-2xl md:text-3xl mb-6 text-gray-300">
-                                Software Engineer | Java Expert | AI Enthusiast
-                            </p>
-                            <p class="text-lg text-gray-400 mb-8 max-w-3xl mx-auto">
-                                Crafting robust backend solutions and innovative systems that power the digital future. 
-                                From microservices to AI integration, I transform complex challenges into elegant solutions.
-                            </p>
-                            <div class="flex flex-wrap justify-center gap-4 mb-8">
-                                <div class="glass-card px-4 py-2 rounded-full">
-                                    <i class="fas fa-chart-line mr-2 text-blue-300"></i>
-                                    Real-time Systems
-                                </div>
-                                <div class="glass-card px-4 py-2 rounded-full">
-                                    <i class="fas fa-microchip mr-2 text-purple-300"></i>
-                                    AI-Powered Solutions
-                                </div>
-                            </div>
-                            <div class="flex flex-wrap justify-center gap-4">
-                                <a href="mailto:akshay.tembhekar@example.com" 
-                                   class="glass-card px-6 py-3 rounded-lg hover:bg-green-600 transition-all">
-                            <i class="fas fa-envelope mr-2"></i>Email
-                        </a>
-                                <a href="tel:+918600768909" 
-                                   class="glass-card px-6 py-3 rounded-lg hover:bg-blue-600 transition-all">
-                            <i class="fas fa-phone mr-2"></i>+91 8600768909
-                        </a>
-                                <a onClick={openLinkedIn} 
-                                   class="glass-card px-6 py-3 rounded-lg hover:bg-blue-700 transition-all cursor-pointer">
-                            <i class="fab fa-linkedin mr-2"></i>LinkedIn
-                        </a>
-                                <a href="https://github.com/AkshayTembhekar21" target="_blank" 
-                                   class="glass-card px-6 py-3 rounded-lg hover:bg-gray-700 transition-all">
-                            <i class="fab fa-github mr-2"></i>GitHub
-                        </a>
-                                <a href="./assets/AkshayTembhekar-Resume.pdf" download 
-                                   class="bg-gradient-to-r from-green-500 to-blue-500 px-6 py-3 rounded-lg hover:from-green-600 hover:to-blue-600 transition-all">
-                            <i class="fas fa-file-download mr-2"></i>Download Resume
-                        </a>
-                            </div>
-                    </div>
-                </header>
-
-                <Section id="about" title="About Me">
-                        <div class="glass-card p-8 rounded-xl">
-                            <p class="text-xl text-gray-300 leading-relaxed">
-                                Experienced Backend Engineer with 7 years in <span class="text-green-300 font-semibold">fintech and enterprise domains</span>. 
-                                Skilled in developing <span class="text-blue-300 font-semibold">scalable backend services</span>, transitioning to 
-                                microservices, and maintaining <span class="text-purple-300 font-semibold">high-performance systems</span>. 
-                                Proficient in Java, Spring Boot, and event-driven architectures with a strong focus on TDD and system reliability. 
-                                Passionate about AI, demonstrated through projects like RAGAI and HR Recruiter, with a focus on technologies to solve 
-                                real-world problems in the <span class="text-green-300 font-semibold">trading and financial technology space</span>.
-                            </p>
-                        </div>
-                </Section>
-
-                <Section id="experience" title="Professional Experience">
-                        <div class="timeline">
-                            <TimelineItem
-                                title="Software Developer (Fintech Domain)"
-                                company="Trading Technologies"
-                                location="Pune"
-                                dates="10/2023 - Present"
-                                isFintech={true}
-                            >
-                                <ul class="list-disc ml-4 text-gray-300 space-y-2 text-sm">
-                                    <li>Designed and developed critical trading workflows, including Market On Close (MOC) and Switch RFM, enabling efficient handling of order execution and pricing logic.</li>
-                                    <li>Implemented a hybrid architecture that integrates legacy monolithic systems with modern web applications using event-driven communication via Publisher-Subscriber pattern.</li>
-                                    <li>Enabled real-time market data updates by leveraging WebSockets for seamless server-market-interface communication.</li>
-                                    <li>Transitioned essential services to a microservices-based architecture to significantly improve system scalability, maintainability, and responsiveness.</li>
-                                    <li>Optimized the Pricing Sheet module for a key client, achieving 80% performance improvement through database tuning and code refactoring.</li>
-                                    <li>Followed Test-Driven Development (TDD) practices to ensure delivery of clean, testable, and production ready code aligned with business requirements.</li>
-                                    <li>Collaborated with cross-functional teams to streamline workflows, eliminate bottlenecks, and deliver high-impact solutions in a fast-paced trading environment.</li>
-                                    <li>Managed a team of 3 developers to deliver product features (Trading workflows) such as MOC and Switch RFM.</li>
-                                    <li>Utilized development and programming expertise to create scalable and robust solutions for merchant integrations, ensuring adherence to payment best practices that improved transaction success rates by 30%.</li>
-                                    <li>Developed and maintained backend services as a Java engineer, focusing on the building blocks of Application Services to enhance system reliability.</li>
-                                    <li><strong>Tools & Technologies:</strong> Java, Spring Boot, Hibernate, Microservices/Distributed Systems, WebSockets, TDD, Event-Driven Architecture, JProfiler, JavaFX.</li>
-                                </ul>
-                            </TimelineItem>
-                            
-                            <TimelineItem
-                                title="Senior Software Engineer"
-                                company="Bee Logical Solutions"
-                                location="Pune"
-                                dates="01/2022 - 10/2023"
-                            >
-                                <ul class="list-disc ml-4 text-gray-300 space-y-2 text-sm">
-                                    <li>Worked as a web developer, delivering end-to-end solutions using Handlebars.js and Backbone.js.</li>
-                                    <li>Developed backend modules for features such as On-Demand Video Training, Membership, and Event management.</li>
-                                    <li>Integrated Vimeo API into the Learning Management System (LMS) module to enhance functionality.</li>
-                                    <li>Followed the Waterfall development model for project execution.</li>
-                                    <li><strong>Tools:</strong> Handlebars.js, Backbone.js, LMS module, Waterfall development.</li>
-                                </ul>
-                            </TimelineItem>
-                            
-                            <TimelineItem
-                                title="Software Developer (Pharmaceutical Domain)"
-                                company="Excellerate Technology"
-                                location="Pune"
-                                dates="04/2020 - 01/2022"
-                            >
-                                <ul class="list-disc ml-4 text-gray-300 space-y-2 text-sm">
-                                    <li>Worked as a back-end developer, delivering robust solutions for client user stories in the pharmaceutical domain.</li>
-                                    <li>Developed key application phases such as Data Entry, Validation, and Filling using Java Swing and Angular.</li>
-                                    <li>Provided technical capital expertise to business stakeholders, ensuring alignment with project goals and delivering impactful solutions.</li>
-                                    <li>Conducted unit testing using JUnit, ensuring comprehensive test coverage and reliable code.</li>
-                                    <li>Adhered to Agile methodologies, collaborating with cross-functional teams to meet evolving project requirements.</li>
-                                    <li><strong>Tools & Technologies:</strong> Java, Swing, Angular, JUnit, SQL, Git, TDD, Agile, SpringBoot, Hibernate, REST.</li>
-                                </ul>
-                            </TimelineItem>
-                            
-                            <TimelineItem
-                                title="Associate Software Developer (Fintech Domain)"
-                                company="NASDAQ"
-                                location="Mumbai"
-                                dates="12/2017 - 03/2020"
-                                isFintech={true}
-                            >
-                                <ul class="list-disc ml-4 text-gray-300 space-y-2 text-sm">
-                                    <li>Implemented end-to-end solutions for trade life-cycle phases such as trade capture and pricing for multiple derivative products.</li>
-                                    <li>Followed industry-standard practices to implement trade capture and pricing features, contributing to backend scalability and maintainability.</li>
-                                    <li>Organized and proactively participated in daily meetings with stakeholders to resolve conflicts and brainstorm new requirements.</li>
-                                    <li>Followed comprehensive documentation, ensuring documentation was completed alongside development.</li>
-                                    <li><strong>Tools & Technologies:</strong> Java, Spring Boot, Hibernate, SQL, Git, Eclipse, Confluence, Log4j, Agile Methodology.</li>
-                                </ul>
-                            </TimelineItem>
-                        </div>
-                </Section>
-
-                <Section id="projects" title="Projects">
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <ProjectTile
-                                title="CanvasSync: OAuth-Integrated LMS"
-                                description="Secure integration system connecting Java platform with Canvas LMS using OAuth 2.0 authentication."
-                                tools="Java 11, Spring Boot, MySQL, OAuth 2.0"
-                        github="https://github.com/AkshayTembhekar21/CanvasSync"
-                    />
-                            <ProjectTile
-                                title="MarketPulse: Real-Time Crypto Pipeline"
-                                description="Real-time cryptocurrency market data pipeline using Spring Boot and Apache Kafka."
-                                tools="Spring Boot, Kafka, JPA, WebSocket"
-                        github="https://github.com/AkshayTembhekar21/MarketPulse"
-                    />
-                            <ProjectTile
-                                title="RAGAI: Confluence QA Assistant"
-                                description="Production-ready RAG system for querying internal knowledge bases using natural language."
-                                tools="Python, OpenAI API, Pinecone, LangChain"
-                        github="https://github.com/AkshayTembhekar21/RAGAI"
-                    />
-                            <ProjectTile
-                                title="HR Recruiter: AI Resume Screening"
-                                description="AI-powered tool to streamline resume screening using Python and NLP techniques."
-                                tools="Python, PyPDF2, OpenAI API, Streamlit"
-                        github="https://github.com/AkshayTembhekar21/hr-recruiter"
-                    />
-                        </div>
-                </Section>
-
-                <Section id="skills" title="Skills">
-                        <div class="glass-card p-8 rounded-xl">
-                            <div class="flex flex-wrap justify-center">
-                                <SkillIcon 
-                                    logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" 
-                                    name="Java" 
-                                />
-                                <SkillIcon 
-                                    logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" 
-                                    name="Python" 
-                                />
-                                <SkillIcon 
-                                    logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" 
-                                    name="Spring Boot" 
-                                />
-                                <SkillIcon 
-                                    logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" 
-                                    name="SQL" 
-                                />
-                                <SkillIcon 
-                                    logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" 
-                                    name="JavaScript" 
-                                />
-                                <SkillIcon 
-                                    logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" 
-                                    name="Docker" 
-                                />
-                                <SkillIcon 
-                                    logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" 
-                                    name="AWS" 
-                                />
-                                <SkillIcon 
-                                    logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" 
-                                    name="Kubernetes" 
-                                />
-                                <SkillIcon 
-                                    logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachekafka/apachekafka-original.svg" 
-                                    name="Kafka" 
-                                />
-                                <SkillIcon 
-                                    logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" 
-                                    name="Git" 
-                                />
-                                <SkillIcon 
-                                    logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/junit/junit-plain.svg" 
-                                    name="JUnit" 
-                                />
-                            </div>
-                    </div>
-                </Section>
-
-                <Section id="education" title="Education">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div class="glass-card p-6 rounded-xl">
-                                <h3 class="text-xl font-semibold text-green-300 mb-3">Computer Science - Master's Degree (MSc)</h3>
-                                <p class="text-gray-300 mb-3">University of Pune, Pune <span class="float-right text-gray-400">06/2016 - 06/2018</span></p>
-                                <ul class="list-disc ml-5 text-gray-300 space-y-1">
-                            <li>Graduated with a <strong>CGPA of 9.2</strong>, ranking <strong>top of the class</strong> in multiple semesters.</li>
-                            <li>Recognized as the <strong>topper</strong> and <strong>awarded</strong> during the program.</li>
-                        </ul>
-                    </div>
-                            <div class="glass-card p-6 rounded-xl">
-                                <h3 class="text-xl font-semibold text-green-300 mb-3">Computer Science - Bachelor's Degree (BSc)</h3>
-                                <p class="text-gray-300 mb-3">University of Pune, Pune <span class="float-right text-gray-400">06/2013 - 06/2016</span></p>
-                                <ul class="list-disc ml-5 text-gray-300 space-y-1">
-                            <li>Graduated with <strong>First Class</strong>.</li>
-                            <li>Secured <strong>1st position</strong> in a <strong>project competition</strong> in 2015 and 2016.</li>
-                            <li>Won <strong>2nd position</strong> in a <strong>project competition</strong> held by Modern College of Science.</li>
-                        </ul>
-                            </div>
-                    </div>
-                </Section>
-
-                <Section id="ai-passion" title="Passion for AI Learning">
-                        <div class="glass-card p-8 rounded-xl">
-                            <p class="text-xl text-gray-300 mb-6">
-                                Passionate about AI and its applications in modern software development. Explore my AI work:
-                            </p>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div class="glass-card p-4 rounded-lg">
-                                    <h4 class="text-lg font-semibold text-green-300 mb-2">RAGAI</h4>
-                                    <p class="text-gray-300 mb-3">Confluence-Powered Internal QA Assistant</p>
-                                    <a href="https://github.com/AkshayTembhekar21/RAGAI" target="_blank" 
-                                       class="text-green-300 hover:text-white transition-colors">
-                                        <i class="fab fa-github mr-2"></i>View Project
-                                    </a>
-                                </div>
-                                <div class="glass-card p-4 rounded-lg">
-                                    <h4 class="text-lg font-semibold text-green-300 mb-2">HR Recruiter</h4>
-                                    <p class="text-gray-300 mb-3">AI-Powered Resume Screening Tool</p>
-                                    <a href="https://github.com/AkshayTembhekar21/hr-recruiter" target="_blank" 
-                                       class="text-green-300 hover:text-white transition-colors">
-                                        <i class="fab fa-github mr-2"></i>View Project
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                </Section>
-
-                    <footer class="glass-card text-center py-8 mt-16">
-                        <p class="text-gray-300">© 2025 Akshay Tembhekar. Building innovative solutions for tomorrow.</p>
-                </footer>
+            <div class="project-tile">
+                <div class="flex-1">
+                    <h3 class="text-xl font-semibold text-green-300 mb-3">RAGAI: Confluence QA Assistant</h3>
+                    <p class="text-gray-300 mb-4 text-sm">Production-ready RAG system for querying internal knowledge bases using natural language.</p>
+                    <p class="text-gray-400 text-xs"><strong>Tools:</strong> Python, OpenAI API, Pinecone, LangChain</p>
+                </div>
+                <a href="https://github.com/AkshayTembhekar21/RAGAI" target="_blank" class="inline-flex items-center text-green-300 hover:text-white transition-colors text-sm mt-auto"><i class="fab fa-github mr-2"></i>View on GitHub</a>
             </div>
-        );
-        };
+            <div class="project-tile">
+                <div class="flex-1">
+                    <h3 class="text-xl font-semibold text-green-300 mb-3">HR Recruiter: AI Resume Screening</h3>
+                    <p class="text-gray-300 mb-4 text-sm">AI-powered tool to streamline resume screening using Python and NLP techniques.</p>
+                    <p class="text-gray-400 text-xs"><strong>Tools:</strong> Python, PyPDF2, OpenAI API, Streamlit</p>
+                </div>
+                <a href="https://github.com/AkshayTembhekar21/hr-recruiter" target="_blank" class="inline-flex items-center text-green-300 hover:text-white transition-colors text-sm mt-auto"><i class="fab fa-github mr-2"></i>View on GitHub</a>
+            </div>
+        </div>
+    </section>
 
-        ReactDOM.render(<App />, document.getElementById('root'));
-    </script>
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 container mx-auto px-4 fade-in">
+        <h2 class="text-4xl font-bold mb-8 text-center glow-text">Skills</h2>
+        <div class="glass-card p-8 rounded-xl">
+            <div class="flex flex-wrap justify-center">
+                <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" class="mx-auto" /><div class="text-sm font-medium">Java</div></div>
+                <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="mx-auto" /><div class="text-sm font-medium">Python</div></div>
+                <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Boot" class="mx-auto" /><div class="text-sm font-medium">Spring Boot</div></div>
+                <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL" class="mx-auto" /><div class="text-sm font-medium">SQL</div></div>
+                <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="mx-auto" /><div class="text-sm font-medium">JavaScript</div></div>
+                <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" class="mx-auto" /><div class="text-sm font-medium">Docker</div></div>
+                <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS" class="mx-auto" /><div class="text-sm font-medium">AWS</div></div>
+                <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" alt="Kubernetes" class="mx-auto" /><div class="text-sm font-medium">Kubernetes</div></div>
+                <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachekafka/apachekafka-original.svg" alt="Kafka" class="mx-auto" /><div class="text-sm font-medium">Kafka</div></div>
+                <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" class="mx-auto" /><div class="text-sm font-medium">Git</div></div>
+                <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/junit/junit-plain.svg" alt="JUnit" class="mx-auto" /><div class="text-sm font-medium">JUnit</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-16 container mx-auto px-4 fade-in">
+        <h2 class="text-4xl font-bold mb-8 text-center glow-text">Education</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="glass-card p-6 rounded-xl">
+                <h3 class="text-xl font-semibold text-green-300 mb-3">Computer Science - Master's Degree (MSc)</h3>
+                <p class="text-gray-300 mb-3">University of Pune, Pune <span class="float-right text-gray-400">06/2016 - 06/2018</span></p>
+                <ul class="list-disc ml-5 text-gray-300 space-y-1">
+                    <li>Graduated with a <strong>CGPA of 9.2</strong>, ranking <strong>top of the class</strong> in multiple semesters.</li>
+                    <li>Recognized as the <strong>topper</strong> and <strong>awarded</strong> during the program.</li>
+                </ul>
+            </div>
+            <div class="glass-card p-6 rounded-xl">
+                <h3 class="text-xl font-semibold text-green-300 mb-3">Computer Science - Bachelor's Degree (BSc)</h3>
+                <p class="text-gray-300 mb-3">University of Pune, Pune <span class="float-right text-gray-400">06/2013 - 06/2016</span></p>
+                <ul class="list-disc ml-5 text-gray-300 space-y-1">
+                    <li>Graduated with <strong>First Class</strong>.</li>
+                    <li>Secured <strong>1st position</strong> in a <strong>project competition</strong> in 2015 and 2016.</li>
+                    <li>Won <strong>2nd position</strong> in a <strong>project competition</strong> held by Modern College of Science.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Passion Section -->
+    <section id="ai-passion" class="py-16 container mx-auto px-4 fade-in">
+        <h2 class="text-4xl font-bold mb-8 text-center glow-text">Passion for AI Learning</h2>
+        <div class="glass-card p-8 rounded-xl">
+            <p class="text-xl text-gray-300 mb-6">Passionate about AI and its applications in modern software development. Explore my AI work:</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="glass-card p-4 rounded-lg">
+                    <h4 class="text-lg font-semibold text-green-300 mb-2">RAGAI</h4>
+                    <p class="text-gray-300 mb-3">Confluence-Powered Internal QA Assistant</p>
+                    <a href="https://github.com/AkshayTembhekar21/RAGAI" target="_blank" class="text-green-300 hover:text-white transition-colors"><i class="fab fa-github mr-2"></i>View Project</a>
+                </div>
+                <div class="glass-card p-4 rounded-lg">
+                    <h4 class="text-lg font-semibold text-green-300 mb-2">HR Recruiter</h4>
+                    <p class="text-gray-300 mb-3">AI-Powered Resume Screening Tool</p>
+                    <a href="https://github.com/AkshayTembhekar21/hr-recruiter" target="_blank" class="text-green-300 hover:text-white transition-colors"><i class="fab fa-github mr-2"></i>View Project</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="glass-card text-center py-8 mt-16">
+        <p class="text-gray-300">© 2025 Akshay Tembhekar. Building innovative solutions for tomorrow.</p>
+    </footer>
 </body>
 </html>
