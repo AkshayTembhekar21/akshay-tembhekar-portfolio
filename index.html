@@ -29,7 +29,8 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         .slide-in-left { animation: slideInLeft 0.8s ease-out; }
         @keyframes slideInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
-        .nav-link { position: relative; transition: all 0.3s ease; cursor: pointer; }
+        .nav-link { position: relative; transition: all 0.3s ease; cursor: pointer; margin-right: 1.5rem; }
+        .nav-link:last-child { margin-right: 0; }
         .nav-link::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #22c55e, #3b82f6); transition: width 0.3s ease; }
         .nav-link:hover::after { width: 100%; }
         .timeline { position: relative; padding: 20px 0; }
@@ -57,134 +58,134 @@
     <div class="floating-element text-4xl">🚀</div>
 
     <!-- Navigation Bar -->
-    <nav class="glass-card sticky top-0 z-50 p-4">
-        <div class="container mx-auto flex justify-between items-center">
+                <nav class="glass-card sticky top-0 z-50 p-4">
+                <div class="container mx-auto flex justify-between items-center">
             <h1 class="text-2xl font-bold glow-text cursor-pointer">Akshay Tembhekar</h1>
-            <div class="hidden md:flex space-x-6">
+                        <div class="hidden md:flex space-x-6">
                 <a href="#about" class="nav-link hover:text-green-300">About</a>
                 <a href="#experience" class="nav-link hover:text-green-300">Experience</a>
                 <a href="#projects" class="nav-link hover:text-green-300">Projects</a>
                 <a href="#skills" class="nav-link hover:text-green-300">Skills</a>
                 <a href="#education" class="nav-link hover:text-green-300">Education</a>
                 <a href="#ai-passion" class="nav-link hover:text-green-300">AI Passion</a>
-            </div>
-        </div>
-    </nav>
+                        </div>
+                </div>
+            </nav>
 
     <!-- Header -->
-    <header class="text-center py-20 relative">
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-10"></div>
-        <div class="relative z-10">
+                    <header class="text-center py-20 relative">
+                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-10"></div>
+                        <div class="relative z-10">
             <h1 class="text-6xl md:text-7xl font-black mb-4 glow-text">Akshay Tembhekar</h1>
             <p class="text-2xl md:text-3xl mb-6 text-gray-300">Software Engineer | Java Expert | AI Enthusiast</p>
-            <p class="text-lg text-gray-400 mb-8 max-w-3xl mx-auto">
-                Crafting robust backend solutions and innovative systems that power the digital future. 
-                From microservices to AI integration, I transform complex challenges into elegant solutions.
-            </p>
-            <div class="flex flex-wrap justify-center gap-4 mb-8">
-                <div class="glass-card px-4 py-2 rounded-full">
+                            <p class="text-lg text-gray-400 mb-8 max-w-3xl mx-auto">
+                                Crafting robust backend solutions and innovative systems that power the digital future. 
+                                From microservices to AI integration, I transform complex challenges into elegant solutions.
+                            </p>
+                            <div class="flex flex-wrap justify-center gap-4 mb-8">
+                                <div class="glass-card px-4 py-2 rounded-full">
                     <i class="fas fa-chart-line mr-2 text-blue-300"></i>Real-time Systems
-                </div>
-                <div class="glass-card px-4 py-2 rounded-full">
+                                </div>
+                                <div class="glass-card px-4 py-2 rounded-full">
                     <i class="fas fa-microchip mr-2 text-purple-300"></i>AI-Powered Solutions
-                </div>
-            </div>
-            <div class="flex flex-wrap justify-center gap-4">
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap justify-center gap-4">
                 <a href="mailto:akshay.tembhekar@example.com" class="glass-card px-6 py-3 rounded-lg hover:bg-green-600 transition-all"><i class="fas fa-envelope mr-2"></i>Email</a>
                 <a href="tel:+918600768909" class="glass-card px-6 py-3 rounded-lg hover:bg-blue-600 transition-all"><i class="fas fa-phone mr-2"></i>+91 8600768909</a>
                 <a href="https://www.linkedin.com/in/akshay-tembhekar-akshaytembhekar" target="_blank" class="glass-card px-6 py-3 rounded-lg hover:bg-blue-700 transition-all cursor-pointer"><i class="fab fa-linkedin mr-2"></i>LinkedIn</a>
                 <a href="https://github.com/AkshayTembhekar21" target="_blank" class="glass-card px-6 py-3 rounded-lg hover:bg-gray-700 transition-all"><i class="fab fa-github mr-2"></i>GitHub</a>
                 <a href="./assets/AkshayTembhekar-Resume.pdf" download class="bg-gradient-to-r from-green-500 to-blue-500 px-6 py-3 rounded-lg hover:from-green-600 hover:to-blue-600 transition-all"><i class="fas fa-file-download mr-2"></i>Download Resume</a>
-            </div>
-        </div>
-    </header>
+                            </div>
+                    </div>
+                </header>
 
     <!-- About Section -->
     <section id="about" class="py-16 container mx-auto px-4 fade-in">
         <h2 class="text-4xl font-bold mb-8 text-center glow-text">About Me</h2>
-        <div class="glass-card p-8 rounded-xl">
-            <p class="text-xl text-gray-300 leading-relaxed">
-                Experienced Backend Engineer with 7 years in <span class="text-green-300 font-semibold">fintech and enterprise domains</span>. 
-                Skilled in developing <span class="text-blue-300 font-semibold">scalable backend services</span>, transitioning to 
-                microservices, and maintaining <span class="text-purple-300 font-semibold">high-performance systems</span>. 
-                Proficient in Java, Spring Boot, and event-driven architectures with a strong focus on TDD and system reliability. 
-                Passionate about AI, demonstrated through projects like RAGAI and HR Recruiter, with a focus on technologies to solve 
-                real-world problems in the <span class="text-green-300 font-semibold">trading and financial technology space</span>.
-            </p>
-        </div>
+                        <div class="glass-card p-8 rounded-xl">
+                            <p class="text-xl text-gray-300 leading-relaxed">
+                                Experienced Backend Engineer with 7 years in <span class="text-green-300 font-semibold">fintech and enterprise domains</span>. 
+                                Skilled in developing <span class="text-blue-300 font-semibold">scalable backend services</span>, transitioning to 
+                                microservices, and maintaining <span class="text-purple-300 font-semibold">high-performance systems</span>. 
+                                Proficient in Java, Spring Boot, and event-driven architectures with a strong focus on TDD and system reliability. 
+                                Passionate about AI, demonstrated through projects like RAGAI and HR Recruiter, with a focus on technologies to solve 
+                                real-world problems in the <span class="text-green-300 font-semibold">trading and financial technology space</span>.
+                            </p>
+                        </div>
     </section>
 
     <!-- Professional Experience Section -->
     <section id="experience" class="py-16 container mx-auto px-4 fade-in">
         <h2 class="text-4xl font-bold mb-8 text-center glow-text">Professional Experience</h2>
-        <div class="timeline">
+                        <div class="timeline">
             <div class="timeline-item glow-border">
                 <div class="glass-card p-6 rounded-xl">
                     <h3 class="text-xl font-semibold text-green-300 mb-2">Software Developer (Fintech Domain)</h3>
                     <p class="text-gray-300 mb-3">Trading Technologies, Pune <span class="float-right text-gray-400">10/2023 - Present</span></p>
-                    <ul class="list-disc ml-4 text-gray-300 space-y-2 text-sm">
-                        <li>Designed and developed critical trading workflows, including Market On Close (MOC) and Switch RFM, enabling efficient handling of order execution and pricing logic.</li>
-                        <li>Implemented a hybrid architecture that integrates legacy monolithic systems with modern web applications using event-driven communication via Publisher-Subscriber pattern.</li>
-                        <li>Enabled real-time market data updates by leveraging WebSockets for seamless server-market-interface communication.</li>
+                                <ul class="list-disc ml-4 text-gray-300 space-y-2 text-sm">
+                                    <li>Designed and developed critical trading workflows, including Market On Close (MOC) and Switch RFM, enabling efficient handling of order execution and pricing logic.</li>
+                                    <li>Implemented a hybrid architecture that integrates legacy monolithic systems with modern web applications using event-driven communication via Publisher-Subscriber pattern.</li>
+                                    <li>Enabled real-time market data updates by leveraging WebSockets for seamless server-market-interface communication.</li>
                         <li>Integrated Bloomberg Terminal Connect into the trading platform using GraphQL APIs to access real-time financial data and market analytics, implementing AES encryption to securely store and manage API keys.</li>
-                        <li>Transitioned essential services to a microservices-based architecture to significantly improve system scalability, maintainability, and responsiveness.</li>
-                        <li>Optimized the Pricing Sheet module for a key client, achieving 80% performance improvement through database tuning and code refactoring.</li>
-                        <li>Followed Test-Driven Development (TDD) practices to ensure delivery of clean, testable, and production ready code aligned with business requirements.</li>
-                        <li>Collaborated with cross-functional teams to streamline workflows, eliminate bottlenecks, and deliver high-impact solutions in a fast-paced trading environment.</li>
-                        <li>Managed a team of 3 developers to deliver product features (Trading workflows) such as MOC and Switch RFM.</li>
-                        <li>Utilized development and programming expertise to create scalable and robust solutions for merchant integrations, ensuring adherence to payment best practices that improved transaction success rates by 30%.</li>
-                        <li>Developed and maintained backend services as a Java engineer, focusing on the building blocks of Application Services to enhance system reliability.</li>
-                        <li><strong>Tools & Technologies:</strong> Java, Spring Boot, Hibernate, Microservices/Distributed Systems, WebSockets, TDD, Event-Driven Architecture, JProfiler, JavaFX.</li>
-                    </ul>
+                                    <li>Transitioned essential services to a microservices-based architecture to significantly improve system scalability, maintainability, and responsiveness.</li>
+                                    <li>Optimized the Pricing Sheet module for a key client, achieving 80% performance improvement through database tuning and code refactoring.</li>
+                                    <li>Followed Test-Driven Development (TDD) practices to ensure delivery of clean, testable, and production ready code aligned with business requirements.</li>
+                                    <li>Collaborated with cross-functional teams to streamline workflows, eliminate bottlenecks, and deliver high-impact solutions in a fast-paced trading environment.</li>
+                                    <li>Managed a team of 3 developers to deliver product features (Trading workflows) such as MOC and Switch RFM.</li>
+                                    <li>Utilized development and programming expertise to create scalable and robust solutions for merchant integrations, ensuring adherence to payment best practices that improved transaction success rates by 30%.</li>
+                                    <li>Developed and maintained backend services as a Java engineer, focusing on the building blocks of Application Services to enhance system reliability.</li>
+                                    <li><strong>Tools & Technologies:</strong> Java, Spring Boot, Hibernate, Microservices/Distributed Systems, WebSockets, TDD, Event-Driven Architecture, JProfiler, JavaFX.</li>
+                                </ul>
                 </div>
             </div>
             <div class="timeline-item">
                 <div class="glass-card p-6 rounded-xl">
                     <h3 class="text-xl font-semibold text-green-300 mb-2">Senior Software Engineer</h3>
                     <p class="text-gray-300 mb-3">Bee Logical Solutions, Pune <span class="float-right text-gray-400">01/2022 - 10/2023</span></p>
-                    <ul class="list-disc ml-4 text-gray-300 space-y-2 text-sm">
-                        <li>Worked as a web developer, delivering end-to-end solutions using Handlebars.js and Backbone.js.</li>
-                        <li>Developed backend modules for features such as On-Demand Video Training, Membership, and Event management.</li>
-                        <li>Integrated Vimeo API into the Learning Management System (LMS) module to enhance functionality.</li>
-                        <li>Followed the Waterfall development model for project execution.</li>
-                        <li><strong>Tools:</strong> Handlebars.js, Backbone.js, LMS module, Waterfall development.</li>
-                    </ul>
+                                <ul class="list-disc ml-4 text-gray-300 space-y-2 text-sm">
+                                    <li>Worked as a web developer, delivering end-to-end solutions using Handlebars.js and Backbone.js.</li>
+                                    <li>Developed backend modules for features such as On-Demand Video Training, Membership, and Event management.</li>
+                                    <li>Integrated Vimeo API into the Learning Management System (LMS) module to enhance functionality.</li>
+                                    <li>Followed the Waterfall development model for project execution.</li>
+                                    <li><strong>Tools:</strong> Handlebars.js, Backbone.js, LMS module, Waterfall development.</li>
+                                </ul>
                 </div>
             </div>
             <div class="timeline-item">
                 <div class="glass-card p-6 rounded-xl">
                     <h3 class="text-xl font-semibold text-green-300 mb-2">Software Developer (Pharmaceutical Domain)</h3>
                     <p class="text-gray-300 mb-3">Excellerate Technology, Pune <span class="float-right text-gray-400">04/2020 - 01/2022</span></p>
-                    <ul class="list-disc ml-4 text-gray-300 space-y-2 text-sm">
-                        <li>Worked as a back-end developer, delivering robust solutions for client user stories in the pharmaceutical domain.</li>
-                        <li>Developed key application phases such as Data Entry, Validation, and Filling using Java Swing and Angular.</li>
-                        <li>Provided technical capital expertise to business stakeholders, ensuring alignment with project goals and delivering impactful solutions.</li>
-                        <li>Conducted unit testing using JUnit, ensuring comprehensive test coverage and reliable code.</li>
-                        <li>Adhered to Agile methodologies, collaborating with cross-functional teams to meet evolving project requirements.</li>
-                        <li><strong>Tools & Technologies:</strong> Java, Swing, Angular, JUnit, SQL, Git, TDD, Agile, SpringBoot, Hibernate, REST.</li>
-                    </ul>
+                                <ul class="list-disc ml-4 text-gray-300 space-y-2 text-sm">
+                                    <li>Worked as a back-end developer, delivering robust solutions for client user stories in the pharmaceutical domain.</li>
+                                    <li>Developed key application phases such as Data Entry, Validation, and Filling using Java Swing and Angular.</li>
+                                    <li>Provided technical capital expertise to business stakeholders, ensuring alignment with project goals and delivering impactful solutions.</li>
+                                    <li>Conducted unit testing using JUnit, ensuring comprehensive test coverage and reliable code.</li>
+                                    <li>Adhered to Agile methodologies, collaborating with cross-functional teams to meet evolving project requirements.</li>
+                                    <li><strong>Tools & Technologies:</strong> Java, Swing, Angular, JUnit, SQL, Git, TDD, Agile, SpringBoot, Hibernate, REST.</li>
+                                </ul>
                 </div>
             </div>
             <div class="timeline-item glow-border">
                 <div class="glass-card p-6 rounded-xl">
                     <h3 class="text-xl font-semibold text-green-300 mb-2">Associate Software Developer (Fintech Domain)</h3>
                     <p class="text-gray-300 mb-3">NASDAQ, Mumbai <span class="float-right text-gray-400">12/2017 - 03/2020</span></p>
-                    <ul class="list-disc ml-4 text-gray-300 space-y-2 text-sm">
-                        <li>Implemented end-to-end solutions for trade life-cycle phases such as trade capture and pricing for multiple derivative products.</li>
-                        <li>Followed industry-standard practices to implement trade capture and pricing features, contributing to backend scalability and maintainability.</li>
-                        <li>Organized and proactively participated in daily meetings with stakeholders to resolve conflicts and brainstorm new requirements.</li>
-                        <li>Followed comprehensive documentation, ensuring documentation was completed alongside development.</li>
-                        <li><strong>Tools & Technologies:</strong> Java, Spring Boot, Hibernate, SQL, Git, Eclipse, Confluence, Log4j, Agile Methodology.</li>
-                    </ul>
+                                <ul class="list-disc ml-4 text-gray-300 space-y-2 text-sm">
+                                    <li>Implemented end-to-end solutions for trade life-cycle phases such as trade capture and pricing for multiple derivative products.</li>
+                                    <li>Followed industry-standard practices to implement trade capture and pricing features, contributing to backend scalability and maintainability.</li>
+                                    <li>Organized and proactively participated in daily meetings with stakeholders to resolve conflicts and brainstorm new requirements.</li>
+                                    <li>Followed comprehensive documentation, ensuring documentation was completed alongside development.</li>
+                                    <li><strong>Tools & Technologies:</strong> Java, Spring Boot, Hibernate, SQL, Git, Eclipse, Confluence, Log4j, Agile Methodology.</li>
+                                </ul>
                 </div>
             </div>
-        </div>
+                        </div>
     </section>
 
     <!-- Projects Section -->
     <section id="projects" class="py-16 container mx-auto px-4 fade-in">
         <h2 class="text-4xl font-bold mb-8 text-center glow-text">Projects</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div class="project-tile">
                 <div class="flex-1">
                     <h3 class="text-xl font-semibold text-green-300 mb-3">CanvasSync: OAuth-Integrated LMS</h3>
@@ -217,14 +218,14 @@
                 </div>
                 <a href="https://github.com/AkshayTembhekar21/hr-recruiter" target="_blank" class="inline-flex items-center text-green-300 hover:text-white transition-colors text-sm mt-auto"><i class="fab fa-github mr-2"></i>View on GitHub</a>
             </div>
-        </div>
+                        </div>
     </section>
 
     <!-- Skills Section -->
     <section id="skills" class="py-16 container mx-auto px-4 fade-in">
         <h2 class="text-4xl font-bold mb-8 text-center glow-text">Skills</h2>
-        <div class="glass-card p-8 rounded-xl">
-            <div class="flex flex-wrap justify-center">
+                        <div class="glass-card p-8 rounded-xl">
+                            <div class="flex flex-wrap justify-center">
                 <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" class="mx-auto" /><div class="text-sm font-medium">Java</div></div>
                 <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="mx-auto" /><div class="text-sm font-medium">Python</div></div>
                 <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Boot" class="mx-auto" /><div class="text-sm font-medium">Spring Boot</div></div>
@@ -236,57 +237,57 @@
                 <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachekafka/apachekafka-original.svg" alt="Kafka" class="mx-auto" /><div class="text-sm font-medium">Kafka</div></div>
                 <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" class="mx-auto" /><div class="text-sm font-medium">Git</div></div>
                 <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/junit/junit-plain.svg" alt="JUnit" class="mx-auto" /><div class="text-sm font-medium">JUnit</div></div>
-            </div>
-        </div>
+                            </div>
+                    </div>
     </section>
 
     <!-- Education Section -->
     <section id="education" class="py-16 container mx-auto px-4 fade-in">
         <h2 class="text-4xl font-bold mb-8 text-center glow-text">Education</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="glass-card p-6 rounded-xl">
-                <h3 class="text-xl font-semibold text-green-300 mb-3">Computer Science - Master's Degree (MSc)</h3>
-                <p class="text-gray-300 mb-3">University of Pune, Pune <span class="float-right text-gray-400">06/2016 - 06/2018</span></p>
-                <ul class="list-disc ml-5 text-gray-300 space-y-1">
-                    <li>Graduated with a <strong>CGPA of 9.2</strong>, ranking <strong>top of the class</strong> in multiple semesters.</li>
-                    <li>Recognized as the <strong>topper</strong> and <strong>awarded</strong> during the program.</li>
-                </ul>
-            </div>
-            <div class="glass-card p-6 rounded-xl">
-                <h3 class="text-xl font-semibold text-green-300 mb-3">Computer Science - Bachelor's Degree (BSc)</h3>
-                <p class="text-gray-300 mb-3">University of Pune, Pune <span class="float-right text-gray-400">06/2013 - 06/2016</span></p>
-                <ul class="list-disc ml-5 text-gray-300 space-y-1">
-                    <li>Graduated with <strong>First Class</strong>.</li>
-                    <li>Secured <strong>1st position</strong> in a <strong>project competition</strong> in 2015 and 2016.</li>
-                    <li>Won <strong>2nd position</strong> in a <strong>project competition</strong> held by Modern College of Science.</li>
-                </ul>
-            </div>
-        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="glass-card p-6 rounded-xl">
+                                <h3 class="text-xl font-semibold text-green-300 mb-3">Computer Science - Master's Degree (MSc)</h3>
+                                <p class="text-gray-300 mb-3">University of Pune, Pune <span class="float-right text-gray-400">06/2016 - 06/2018</span></p>
+                                <ul class="list-disc ml-5 text-gray-300 space-y-1">
+                            <li>Graduated with a <strong>CGPA of 9.2</strong>, ranking <strong>top of the class</strong> in multiple semesters.</li>
+                            <li>Recognized as the <strong>topper</strong> and <strong>awarded</strong> during the program.</li>
+                        </ul>
+                    </div>
+                            <div class="glass-card p-6 rounded-xl">
+                                <h3 class="text-xl font-semibold text-green-300 mb-3">Computer Science - Bachelor's Degree (BSc)</h3>
+                                <p class="text-gray-300 mb-3">University of Pune, Pune <span class="float-right text-gray-400">06/2013 - 06/2016</span></p>
+                                <ul class="list-disc ml-5 text-gray-300 space-y-1">
+                            <li>Graduated with <strong>First Class</strong>.</li>
+                            <li>Secured <strong>1st position</strong> in a <strong>project competition</strong> in 2015 and 2016.</li>
+                            <li>Won <strong>2nd position</strong> in a <strong>project competition</strong> held by Modern College of Science.</li>
+                        </ul>
+                            </div>
+                    </div>
     </section>
 
     <!-- AI Passion Section -->
     <section id="ai-passion" class="py-16 container mx-auto px-4 fade-in">
         <h2 class="text-4xl font-bold mb-8 text-center glow-text">Passion for AI Learning</h2>
-        <div class="glass-card p-8 rounded-xl">
+                        <div class="glass-card p-8 rounded-xl">
             <p class="text-xl text-gray-300 mb-6">Passionate about AI and its applications in modern software development. Explore my AI work:</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="glass-card p-4 rounded-lg">
-                    <h4 class="text-lg font-semibold text-green-300 mb-2">RAGAI</h4>
-                    <p class="text-gray-300 mb-3">Confluence-Powered Internal QA Assistant</p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="glass-card p-4 rounded-lg">
+                                    <h4 class="text-lg font-semibold text-green-300 mb-2">RAGAI</h4>
+                                    <p class="text-gray-300 mb-3">Confluence-Powered Internal QA Assistant</p>
                     <a href="https://github.com/AkshayTembhekar21/RAGAI" target="_blank" class="text-green-300 hover:text-white transition-colors"><i class="fab fa-github mr-2"></i>View Project</a>
-                </div>
-                <div class="glass-card p-4 rounded-lg">
-                    <h4 class="text-lg font-semibold text-green-300 mb-2">HR Recruiter</h4>
-                    <p class="text-gray-300 mb-3">AI-Powered Resume Screening Tool</p>
+                                </div>
+                                <div class="glass-card p-4 rounded-lg">
+                                    <h4 class="text-lg font-semibold text-green-300 mb-2">HR Recruiter</h4>
+                                    <p class="text-gray-300 mb-3">AI-Powered Resume Screening Tool</p>
                     <a href="https://github.com/AkshayTembhekar21/hr-recruiter" target="_blank" class="text-green-300 hover:text-white transition-colors"><i class="fab fa-github mr-2"></i>View Project</a>
-                </div>
-            </div>
-        </div>
+                                </div>
+                            </div>
+                        </div>
     </section>
 
     <!-- Footer -->
-    <footer class="glass-card text-center py-8 mt-16">
-        <p class="text-gray-300">© 2025 Akshay Tembhekar. Building innovative solutions for tomorrow.</p>
-    </footer>
+                    <footer class="glass-card text-center py-8 mt-16">
+                        <p class="text-gray-300">© 2025 Akshay Tembhekar. Building innovative solutions for tomorrow.</p>
+                </footer>
 </body>
 </html>
