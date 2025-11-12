@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-        * { font-family: 'Inter', sans-serif; }
-        html { scroll-behavior: smooth; }
-        body { overflow-x: hidden; overflow-y: scroll; background: #000000; color: #e5e7eb; }
-        .trading-bg { background: #000000 !important; position: relative; overflow: visible; min-height: 100vh; color: #e5e7eb !important; }
+        * { font-family: 'Inter', sans-serif; filter: none !important; }
+        html { scroll-behavior: smooth; background: #000000 !important; color-scheme: dark; }
+        body { overflow-x: hidden; overflow-y: scroll; background: #000000 !important; color: #e5e7eb !important; filter: none !important; }
+        .trading-bg { background: #000000 !important; position: relative; overflow: visible; min-height: 100vh; color: #e5e7eb !important; filter: none !important; }
         .trading-bg::before { content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 20% 80%, rgba(34, 197, 94, 0.05) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 50%), radial-gradient(circle at 40% 40%, rgba(168, 85, 247, 0.05) 0%, transparent 50%); animation: backgroundShift 30s ease-in-out infinite; pointer-events: none; z-index: -1; }
         @keyframes backgroundShift { 0%, 100% { transform: scale(1) rotate(0deg); } 50% { transform: scale(1.05) rotate(0.5deg); } }
         .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); }
